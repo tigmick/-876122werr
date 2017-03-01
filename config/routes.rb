@@ -16,6 +16,7 @@ Rails.application.routes.draw do
    end 
   get 'welcome/index'
   post 'welcome/search'
+  match 'welcome/search', :to => "welcome#search", :as => :search, :via => [:get,:post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
