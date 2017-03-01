@@ -5,7 +5,7 @@ class UsersController < ApplicationController
       @applied_jobs = []
     else
       @user = current_user
-      @applied_jobs = Job.where(id: current_user.user_job.job_ids) if current_user.user_job.present? 
+      @applied_jobs = current_user.user_job.present? ? Job.where(id: current_user.user_job.job_ids) : [] 
     end
   end
 end
