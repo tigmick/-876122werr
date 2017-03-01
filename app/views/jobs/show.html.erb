@@ -11,9 +11,14 @@
 </p>
 <p>
   <strong>Industry:</strong>
-  <%= @job.industry.title %>
+  <%= @job.industry.try(:title) %>
 </p>
 
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>
+
+
+<hr>
+<h1><%= @users.length %> Candidate has been applied</h1>
+<%= render 'jobs/user_applied' %>

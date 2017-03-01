@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   end
   resources :jobs
   devise_for :users
+   resources :users , only: [] do
+     resources :user_jobs, only: :create
+   end 
   get 'welcome/index'
   post 'welcome/search'
 

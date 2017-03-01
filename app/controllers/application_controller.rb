@@ -12,10 +12,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
-    if resource.email == "admin@example.com"
-      admin_dashboard_path
-    else
-      users_dashboard_path
-    end
+    resource.email == "admin@example.com" ? admin_dashboard_path : users_dashboard_path 
   end
 end

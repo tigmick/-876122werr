@@ -104,6 +104,8 @@
             <ul class="dropdown-menu">
               <li><a href="#"><%= current_user.email%></a></li>
               <li role="separator" class="divider"></li>
+              <li><%= link_to "Dashboard", users_dashboard_path%>
+              <li role="separator" class="divider"></li>
               <li><a href="#"><%= current_user.try(:contact_no)%></a></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Edit",  edit_user_registration_path %></li>

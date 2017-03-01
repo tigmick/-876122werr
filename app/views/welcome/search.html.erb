@@ -1,7 +1,7 @@
 <% @search.each do |search| %>
   Job Title : <%= search.searchable.title%><br/>
   Job Description : <%= search.searchable.description %><br/>
-  <%= button_tag "Apply", id: "apply_#{search.searchable.id}", class: "search_btn btn btn-primary"%>
+  <%= job_apply_link(search)%>
   <br/>
 <% end %>
 

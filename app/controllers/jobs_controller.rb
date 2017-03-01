@@ -10,6 +10,7 @@ class JobsController < ApplicationController
   # GET /Jobs/1
   # GET /Jobs/1.json
   def show
+    @users = UserJob.all.collect{|k| k.job_ids.include?(@job.id) ? User.find(k.user_id) : []}.flatten
   end
 
   # GET /Jobs/new
@@ -19,7 +20,7 @@ class JobsController < ApplicationController
 
   # GET /Jobs/1/edit
   def edit
-    debugger
+    
   end
 
   # POST /Jobs

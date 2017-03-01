@@ -37,8 +37,9 @@ development:
   host: localhost
   username: postgres
   database: recruitment_development
-  password: 12345678
-
+  password: root
+  host: localhost
+  
 production:
   <<: *default
   host: 139.59.179.138

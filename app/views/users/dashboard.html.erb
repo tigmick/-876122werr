@@ -6,4 +6,15 @@
     <th>Submitted to Client</th>
     <th>Interview Status</th>
   </thead>
+  <tbody>
+  	<% @applied_jobs.each do |job| %>
+    <tr>
+      <td><%= job.title %></td>
+      <td><%=""%></td>
+      <td><%=""%></td>
+      <td><%=""%></td>
+      <td><%=""%></td>
+    <tr>
+    <%end%>
+  </tbody>
 </table>
