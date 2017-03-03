@@ -14,6 +14,8 @@ class InterviewSchedulesController < ApplicationController
 			 client_comment: params[:client_comment],
 			 user_id:  params[:user_id]
 			).save
+
+		redirect_to "/users/#{params[:user_id]}/user_profile?job_id=#{interview.job.id}&review=true"
 	end
 
 	def show
