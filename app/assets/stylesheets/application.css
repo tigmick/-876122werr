@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= stub active_admin
+ *= require datetimepicker
  */
 
 nav{

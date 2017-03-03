@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301065636) do
+ActiveRecord::Schema.define(version: 20170303063836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,25 @@ ActiveRecord::Schema.define(version: 20170301065636) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "interview_schedules", force: :cascade do |t|
+    t.integer  "interview_id"
+    t.integer  "stage"
+    t.string   "interview_avail_dates"
+    t.string   "interviewers_names"
+    t.string   "candidate_feedback"
+    t.string   "client_comment"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "user_id"
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.integer  "job_id"
+    t.integer  "total_stage"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -85,6 +104,15 @@ ActiveRecord::Schema.define(version: 20170301065636) do
     t.integer  "cv_file_size"
     t.datetime "cv_updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "job_id"
+    t.integer  "user_id"
+    t.boolean  "is_review"
+    t.integer  "review_count"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "user_jobs", force: :cascade do |t|

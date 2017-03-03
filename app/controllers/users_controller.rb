@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include UsersHelper
+	before_action :check_reviews, only: :user_profile  
   def dashboard
     if current_user.client?
       @user = current_user
@@ -6,6 +8,19 @@ class UsersController < ApplicationController
     else
       @user = current_user
       @applied_jobs = current_user.user_job.present? ? Job.where(id: current_user.user_job.job_ids) : [] 
+      @reviews = Review.joins(:job).where(user_id: 1).select("job_id","jobs.user_id")
     end
+  end
+
+  def user_profile
+  	@user =  User.find(params[:id])
+  	@job = Job.find(params[:job_id])
+  end
+
+  def check_reviews
+  	if params[:review]
+  		review = Review.find_or_create_by(job_id: params[:job_id], user_id: params[:id])
+      review.update(is_review: true, review_count: (review.review_count.to_i+1))
+ 	  end
   end
 end

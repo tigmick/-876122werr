@@ -10,8 +10,8 @@
   	<% @applied_jobs.each do |job| %>
     <tr>
       <td><%= job.title %></td>
-      <td><%=""%></td>
-      <td><%=""%></td>
+      <td><%=reviewed_by(@reviews,job)%></td>
+      <td><%=interviewed_by(job)%></td>
       <td><%=""%></td>
       <td><%=""%></td>
     <tr>

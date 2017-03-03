@@ -9,9 +9,16 @@ Rails.application.routes.draw do
       get :download
     end
   end
-  resources :jobs
+  resources :jobs do
+    resources :interviews, only: :create
+  end
+  resources :interview_schedules, only: :create
+  
   devise_for :users
    resources :users , only: [] do
+      member do
+        get "user_profile"
+     end
      resources :user_jobs, only: :create
    end 
   get 'welcome/index'
