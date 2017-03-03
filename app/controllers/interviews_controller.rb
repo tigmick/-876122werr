@@ -4,7 +4,6 @@ class InterviewsController < ApplicationController
   end 
 
 	def create
-		debugger
 		if @job.interview.present?
 			@job.interview.update(inteview_params)
 		else
