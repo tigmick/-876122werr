@@ -4,18 +4,17 @@
 	<h5><b>Contact No:</b> <%= @user.contact_no %></h5>
 </div>
 
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
+<% if @job.interview.present? %>
+<button id="myBtn" class="btn btn-primary">Interview Schedule</button>
 <div id="myModal" class="modal">
-
-  <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
     <%= render "interview_schedules/form"%>
   </div>
-
 </div>
+<% else %>
+ <p>First you need to define interview stage.</p>
+<% end %>
 
 <script type="text/javascript">
 var modal = document.getElementById('myModal');

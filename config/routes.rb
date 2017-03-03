@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     end
   end
   resources :jobs do
-    resources :interviews, only: :create
+    resources :interviews, only: [:new,:create]
   end
-  resources :interview_schedules, only: :create
+  resources :interview_schedules, only: [:create, :show]
   
   devise_for :users
    resources :users , only: [] do

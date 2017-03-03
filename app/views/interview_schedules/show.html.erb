@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+  <thead>
+    <th>Interview Stage</th>
+    <th>Interview Availability Dates</th>
+    <th>Interview Dates</th>
+    <th>Candidate Feedback</th>
+    <th>Client Comments</th>
+    <th>Next Steps</th>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%=schedule.stage%></td>
+        <td><%=schedule.interview_avail_dates.values.join(', ')%></td>
+        <td><%=schedule.interviewers_names.join(', ')%></td>
+        <td><%=schedule.candidate_feedback%></td>
+        <td><%=schedule.client_comment%></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

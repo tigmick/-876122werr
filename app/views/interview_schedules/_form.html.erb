@@ -1,5 +1,5 @@
  <%= form_tag interview_schedules_path do %>
-	<%= hidden_field_tag :interview_id, @job.interview.id%>
+	<%= hidden_field_tag :interview_id, @job.interview.id if @job.interview.present? %>
 	<%= hidden_field_tag :user_id, @user.id%>
 	<%= hidden_field_tag :date_count, ""%>
 	<div class="form-group">

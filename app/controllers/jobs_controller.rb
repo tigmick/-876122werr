@@ -11,6 +11,7 @@ class JobsController < ApplicationController
   # GET /Jobs/1.json
   def show
     @users = UserJob.all.collect{|k| k.job_ids.include?(@job.id) ? User.find(k.user_id) : []}.flatten
+    @interview = Interview.new
   end
 
   # GET /Jobs/new
