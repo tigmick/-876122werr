@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<% unless flash[:notice].nil? %>
+ <p class="error-msg"> <%= flash[:notice] %> </p>
+<% end %>
 <p>
   <strong>Title:</strong>
   <%= @job.title %>

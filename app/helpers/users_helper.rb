@@ -27,9 +27,16 @@ module UsersHelper
 	  	stages.each do |stage|
         html += "<b>"+stage.ordinalize+"</b> round<br>"
 	  	end
-       html += link_to "show schedule","/interview_schedules/#{job.id}?user_id=#{current_user.id}"
+       html += link_to "show schedule","/interview_schedules/#{job.id}?user_id=#{current_user.id}" unless stages.empty?
 	  	# html += link_to "show schedule",interview_schedule_path(job)
 	  	return html.html_safe
 	  end
+	end
+
+	def cv_download(reviews,job)
+		html = ""
+		review = reviews.find_by(job_id: job.id, user_id: current_user,is_cv_download: true)
+		html = review.present? ? "<b>Yes</b> on <b>Date: #{review.cv_download_date}</b>" : "<b>No</b>"
+	  return html.html_safe
 	end
 end

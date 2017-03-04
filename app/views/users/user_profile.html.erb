@@ -1,7 +1,13 @@
-<div class="user_profile">
+
+<% unless flash[:notice].nil? %>
+ <p class="error-msg"> <%= flash[:notice] %> </p>
+<% end %>
+  <div class="user_profile">
 	<h5><b>Email:</b> <%= @user.email %></h5>
 	<h5><b>Full Name:</b> <%= @user.full_name %></h5>
 	<h5><b>Contact No:</b> <%= @user.contact_no %></h5>
+    <h5><%=  link_to "list of resume",{:controller => "resumes", :action => "index", :user_id => @user.id, job_id: @job.id},  class: " btn btn-primary" %></h5>
+
 </div>
 
 <% if @job.interview.present? %>

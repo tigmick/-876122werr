@@ -5,6 +5,9 @@ class JobsController < ApplicationController
   # GET /Jobs.json
   def index
     @jobs = Job.all
+    if current_user.client? 
+      @jobs =  current_user.jobs
+    end
   end
 
   # GET /Jobs/1

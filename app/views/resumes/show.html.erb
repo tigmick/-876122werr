@@ -12,7 +12,8 @@
 <p>
   <strong>CV:</strong>
   <!-- <iframe src="<%= @resume.cv.url%>"></iframe> -->
-  <%= link_to @resume.cv_file_name, download_resume_path(@resume)%>
+  <%= link_to @resume.cv_file_name, download_resume_path(@resume),  target: "_blank"%>
+
 </p>
 
 <%= link_to 'Edit', edit_resume_path(@resume) %> |

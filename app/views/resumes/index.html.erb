@@ -15,9 +15,7 @@
       <tr>
         <td><%= resume.title %></td>
         <td><%= resume.description %></td>
-        <td><%= link_to 'Show', resume %></td>
-        <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
-        <td><%= link_to 'Destroy', resume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= resume_links resume %>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Resume', new_resume_path %>
+<%= link_to 'New Resume', new_resume_path unless current_user.client? %>

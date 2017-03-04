@@ -5,10 +5,11 @@ class InterviewsController < ApplicationController
 
 	def create
 		if @job.interview.present?
-			@job.interview.update(inteview_params)
+			job = @job.interview.update(inteview_params)
 		else
-  		@job.build_interview(inteview_params).save
+  		job = @job.build_interview(inteview_params).save
     end
+    flash[:notice] =  "stage should be between 1 to 10" unless job.present?
   	redirect_to job_path(@job)
 	end
 
