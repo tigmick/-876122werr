@@ -15,8 +15,91 @@
  *= stub active_admin
  *= require datetimepicker
  */
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 nav{
   max-width: 100% !important;
   right: 0 !important;
+  margin:0;
+}
+a:hover{background:rgba(0,0,0,0); color:#4286f5;}
+.sign_pop h3{font-size:15px;}
+.banner{margin-top:-60px; position:relative;}
+.banner_cov{margin-top:-60px;}
+body{position:absolute;min-width: 100%;min-height: 100%; padding-bottom:100px;}
+footer{clear:both;margin-top:10px;position:absolute;bottom:0; left:0; width:100%;}
+.sign_pop > a:hover{background:rgba(0,0,0,0); color:#333;}
+.sign_pop input[type="text"], .sign_pop input[type="email"], .sign_pop textarea, .sign_pop select{width: 100%;  min-height:26px;}
+.sign_pop input[type="submit"]{background:#00780f; color:#fff; padding:5px 12px; border:0px solid #00780f}
+.dropdown-menu .divider{margin:0px;}
+.field_with_errors label{color:#fff;}
+.logo_txt{font-family:arial;font-size: 24px;font-weight: 400;}
+footer{clear:both; margin-top:10px;}
+.banner{margin-top:-50px;}
+.navbar-default{margin:0;}
+.navbar-default{background-color:#000; border-radius:0; border:0px solid rgba(0,0,0,0);}
+.navbar-default .navbar-nav > li > a{padding:7px 10px;}
+.sign_pop {    background: #fff;    border: 1px solid #ddd;    margin-top: 30px;    border-radius: 10px;    padding: 20px 50px;    margin-bottom: 30px;}
+.sign_pop h2{font-size:18px; text-align:center; margin-top:20px;}
+.field label{font-weight:400;}
+.banner_cov{position:relative;margin-bottom:-220px;}
+.banner_cov:after{content:""; height:100%; width:100%; position:absolute; top:0; left:0; background:rgba(0,0,0,0.7)}
+.field .form-control{border-radius:0px; box-shadow:0 0 0 0 rgba(0,0,0,0);}
+.banner_cov, .banner_cov img{width:100%; float:left;}
+.navbar-form input[type="submit"]{background:#4286f5; border:0px solid rgba(0,0,0,0); color:#fff; padding:5px 11px;}
+nav .nav > li:first-child{border:0px solid rgba(0,0,0,0);}
+.navbar-default .navbar-nav > li > a{padding:4px 11px; font-size: 14px; color: #fff; margin-left: 10px; letter-spacing: 0;}
+nav.navbar.navbar-default{background:rgba(0,0,0,0); margin-bottom:0px; z-index:10;}
+a.link{text-decoration:underline; padding:7px 12px; float:right;}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{color:#fff; background-color:cornflowerblue;}
+.table-bordered th{background:#333; color:#fff;}
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{border:1px solid #333;}
+.table-bordered{border-top:1px solid #333;}
+.sign_pop h1{font-size:22px;}
+.media-left{float:left; margin-right:15px;}
+section p{font-size:14px;}
+ul.nav.navbar-nav.navbar-right li:hover a{background:#4286f5; color:#fff;}
+ul.nav.navbar-nav.navbar-right li:last-child a.btn-primary, ul.nav.navbar-nav.navbar-right li:last-child:hover a.btn-primary, ul.nav.navbar-nav.navbar-right li:last-child a.btn-primary:hover{background: #00780f;border-color: #00780f;}
+nav .form-group{float:right; margin-left:15px;  position:relative;}
+.content h1{font-family: open sans;  font-size: 45px;  font-weight: 300;}
+.content p{font-family:open sans;  font-size: 15px; font-weight: 300;}
+.modal-content{max-width:600px;}
+#myModal input.form-control{clear:both;  float: left;  max-width: 80%;}
+.sign_pop input[type="submit"] {
+  float: left;
+  margin: 0 0 0 6px;
+  padding: 8px 23px;
+}
+.col-md-6.sign_pop.col-md-offset-3 .banner_cov {
+  display: none;
+}
+.edit_user {
+  display: inline-block;
+}
+.sign_pop input[type="submit"]{ margin:0 15px 0 0 !important;}
+div.field, div.actions {
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+div.actions input {
+  margin: 0 10px 0 0 !important;
+}
+.jobs_tb.table-bordered tr td a{color:#4286f5}
+.col-md-6.sign_pop.col-md-offset-3 .container{margin:0; width:100%; max-width:100%;}
+.col-md-6.sign_pop.col-md-offset-3 .col-md-10.sign_pop.col-md-offset-1{ margin:0; border:0px solid rgba(0,0,0,0); padding:0; max-width:100%;}
+.sign_pop .close{opacity:1;}
+.jobs_tb.table-bordered tr td:nth-child(4) a:before{content:" "; font-family:fontawesome;}
+.jobs_tb.table-bordered tr td:nth-child(5) a:before{content:" "; font-family:fontawesome;}
+.jobs_tb.table-bordered tr td:nth-child(6) a:before{content:" "; font-family:fontawesome; color:#f00; }
+.jobs_tb.table-bordered tr td a:hover{background:rgba(0,0,0,0);}
+.jobs_tb.table-bordered tr td:nth-child(6) a{color:#f00;}
+.sign_pop .banner_cov { display: none;}
+.sign_pop .container{margin:0; max-width:100%;  padding:0}
+.sign_pop .container .row{margin:0; padding:0}
+.sign_pop .container .row .sign_pop{padding:0; margin:0; border:0px solid rgba(0,0,0,0)}
+
+.header-form .form-control {
+  border-radius: 0;
+  height: 30px;
+  padding: 4px 11px;
 }

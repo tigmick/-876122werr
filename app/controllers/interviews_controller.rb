@@ -1,4 +1,5 @@
 class InterviewsController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_job
   def new
   end 
@@ -16,6 +17,8 @@ class InterviewsController < ApplicationController
 	def set_job
 		@job = Job.find params[:job_id]
 	end
+
+	private
 
 	def inteview_params
 		params.require(:interview).permit(:total_stage)

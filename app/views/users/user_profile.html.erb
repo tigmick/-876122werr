@@ -9,19 +9,19 @@
     <h5><%=  link_to "list of resume",{:controller => "resumes", :action => "index", :user_id => @user.id, job_id: @job.id},  class: " btn btn-primary" %></h5>
 
 </div>
-
-<% if @job.interview.present? %>
-<button id="myBtn" class="btn btn-primary">Interview Schedule</button>
-<div id="myModal" class="modal">
-  <div class="modal-content">
+<% if current_user.client? %>
+    <% if @job.interview.present?  %>
+    <button id="myBtn" class="btn btn-primary">Interview Schedule</button>
+    <div id="myModal" class="modal">
+    <div class="modal-content">
     <span class="close">&times;</span>
     <%= render "interview_schedules/form"%>
-  </div>
-</div>
-<% else %>
- <p>First you need to define interview stage.</p>
+    </div>
+    </div>
+    <% else %>
+    <button class="btn btn-primary" disabled="disabled">Interview Schedule</button>
+    <% end %>
 <% end %>
-
 <script type="text/javascript">
 var modal = document.getElementById('myModal');
 var btn = document.getElementById("myBtn");

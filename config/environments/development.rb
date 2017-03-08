@@ -31,6 +31,20 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "http://6b95fa28.ngrok.io" }
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'example.com',
+    user_name:            'yuvasoftest@gmail.com',
+    password:             'yuva12345678',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
+
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
   # Adds additional error checking when serving assets at runtime.

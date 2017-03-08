@@ -1,4 +1,5 @@
 class UserJobsController < ApplicationController
+	before_action :authenticate_user! 
 	def create
 		@job_id = params[:job_id]
 		if current_user.user_job.nil? || current_user.user_job.job_ids.empty?

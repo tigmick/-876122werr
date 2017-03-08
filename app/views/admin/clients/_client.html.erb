@@ -1,0 +1,21 @@
+  <% @clients = User.where(:role=> "client")%>
+  <table class="table respon">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client|%>
+      <tr>
+        <td><%= client.first_name %></td>
+        <td><%= client.first_name %></td>
+        <td><%= client.email %></td>
+      </tr>
+      <% end %>
+    </tbody>
+      
+  </table>
+

@@ -18,9 +18,9 @@
         <td><%= job.title %></td>
         <td><%= job.description %></td>
         <td><%= job.try(:industry).try(:title) %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', job  %></td>
+        <td><%= link_to 'Edit', edit_job_path(job) if current_user.client?%></td>
+        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } if current_user.client? %></td>
         
       </tr>
     <% end %>
@@ -31,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Resume', new_resume_path %>
+<%= link_to 'New jobs', new_job_path %>

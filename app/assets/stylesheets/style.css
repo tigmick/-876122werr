@@ -9,6 +9,7 @@ body{
   background:url("/assets/banner.jpg"); 
   background-size:cover; transition:all 0.6s;
   min-height: 441px;
+  margin-top:-60px;
 }
 .banner header{
   padding:12px;
@@ -369,6 +370,8 @@ body.cv h1{
 .out_bod table.table{
   margin-bottom:0;
 }
+.navbar{margin:0;}
+footer{clear:both;}
 /*------------Responsive  css start here----------*/
 @media(max-width:767px){
 	.content{max-width:90%; 

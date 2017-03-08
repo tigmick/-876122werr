@@ -1,5 +1,8 @@
 class JobsController < ApplicationController
+  include JobsHelper
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /Jobs
   # GET /Jobs.json
@@ -15,6 +18,7 @@ class JobsController < ApplicationController
   def show
     @users = UserJob.all.collect{|k| k.job_ids.include?(@job.id) ? User.find(k.user_id) : []}.flatten
     @interview = Interview.new
+    @schedules =  @job.interview.present? ? @job.interview.interview_schedules : []
   end
 
   # GET /Jobs/new

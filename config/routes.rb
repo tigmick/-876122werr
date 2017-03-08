@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :interviews, only: [:new,:create]
   end
-  resources :interview_schedules, only: [:create, :show]
+  resources :interview_schedules, only: [:create, :show] do
+    collection do
+      post "candidate_feedback"
+      post "client_comment"
+      post "next_step"
+    end
+  end
   
   devise_for :users
    resources :users , only: [] do

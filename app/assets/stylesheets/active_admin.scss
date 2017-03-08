@@ -15,3 +15,137 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+.select-role{
+  color: #5e6469;
+  display: block;
+  float: left;
+  font-size: 1em;
+  font-weight: bold;
+  width: 20%;
+  padding:10px;
+}
+#main_content td {
+  color: #fff;
+}
+.table_tools_segmented_control li a {
+  font-size: 15px;
+  font-weight: 400;
+  height: 27px;
+  line-height: 17px;
+}
+a.table_tools_button.disabled, .table_tools .dropdown_menu_button.disabled{opacity:1}
+table.index_table td{border-bottom:1px solid #666 !important}
+table.index_table td{border-bottom: 1px solid #666;}
+body{min-width:100%; min-height:100%; position:absolute; background:#444; padding-bottom:60px; font-family:arial;}
+#footer{position:absolute; left:0; width:100%; bottom:0;}
+*{box-sizing:border-box}
+#header{background:#222;}
+#active_admin_content, #title_bar{background:#444; border:0px solid; box-shadow:0 0 0 rgba(0,0,0,0); padding-top:5px; padding-bottom:5px;}
+.breadcrumb{margin-bottom:0px; float:left; line-height:17px;}
+#title_bar h2, .breadcrumb a, .breadcrumb a:link, .breadcrumb a:visited, .breadcrumb a:active{color:#fff;}
+#title_bar h2{color: #fff;
+    font-size: 1.6em;
+    font-weight: 400 !important;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+	table tbody > tr:nth-child(2n + 1) > td{background:#3b3b3b; border-top:0px solid #000; border-bottom:0px solid #000}
+	table tbody > tr:nth-child(2n + 1) > td:nth-child(2), table thead > tr > th:nth-child(2),table#index_table_admin_users thead > tr > th:nth-child(2), table tbody > tr > td:nth-child(2){background:#7d7d7d}
+	table tbody > tr:nth-child(2n + 1) > td:nth-child(4), table thead > tr > th:nth-child(4),table#index_table_admin_users thead > tr > th:nth-child(2), table tbody > tr > td:nth-child(4){background:#7d7d7d}
+	
+div#active_admin_content {
+    width: 100%;
+    float: left;
+}
+#title_bar #titlebar_left, #title_bar #titlebar_right{height:auto;}
+	table{width: auto;    border: 8px solid #666;    font-family: roboto;    background: #3b3b3b;    min-width: 703px;}
+	table thead > tr > th, .table.respon tbody > tr > td{
+			padding:8px 10px; color:#fff; border:1px solid #464646;
+		}
+
+	#index_table_admin_users thead > tr > th,	table thead > tr > th{
+  background: #333 none repeat scroll 0 0 !important;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+  border:0px solid rgba(0,0,0,0);
+  color: #fff !important;
+  font-family: open sans;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 1;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+#index_table_admin_users thead > tr > th a, table thead > tr > th a{color:#fff;}
+	table tbody > tr {border-top:2px solid #464646;border-right:2px solid #464646;border-left:2px solid #464646;}
+	table tbody > tr > td{font-size:13px; font-weight:400;}
+	#header ul.tabs > li a{color:rgba(255,255,255,1); text-decoration:none; text-shadow:0  0 0 rgba(0,0,0,0); font-family:arial;}
+	#header ul.tabs > li a:hover{color:rgba(255,255,255,1);}
+	#footer{background:#333; padding:10px 30px;}
+	#footer p, #footer p a{color:#fff;}
+	#header ul.tabs > li a{color:rgba(255,255,255,1);text-decoration:none;text-shadow:0 0 0 rgba(0,0,0,0);font-weight:300;letter-spacing:0.1px;font-family:roboto;}
+	table#index_table_admin_users td {
+  border: 1px solid #808080 !important;
+  color: #fff;
+  font-family: arial;
+  font-size: 13px;
+  padding: 10px 12px 8px;
+  vertical-align: top;
+}
+table#index_table_admin_users th{
+  border: 1px solid #808080 !important;
+  }
+.download_links > a, .download_links > span {
+  color: #fff;
+}
+table tbody > tr > td{font-family:arial;}
+table.index_table th.sortable a {
+  color: #fff;
+  font-weight: 400;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+table.index_table tr td{color:#fff !important}
+table thead tr th {
+  border: 1px solid #666 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) inset !important;
+}
+table.index_table tr.even td{background:rgba(0,0,0,0);}
+table tbody > tr > td , table tbody > tr > th{  border: 1px solid #666;}
+.panel_contents label{color:#fff;}
+table tbody > tr > td a{color:#fff !important;}
+table.index_table {border: 3px solid #666;}
+	form fieldset.inputs { 
+  background: #333 none repeat scroll 0 0;
+  border: 0 solid #999;
+  box-shadow: 0 0 0 2px #666 inset;
+}
+	form fieldset.inputs label{color:#fff;}
+form fieldset legend span{background: #666 none repeat scroll 0 0;
+border: 0 solid;
+box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+color: #fff;
+text-shadow: 0 0 0 rgba(0, 0, 0, 0);}	
+#header ul.tabs > li a{font-size:12px; letter-spacing:0; padding:6px 7px 4px; font-weight:700; text-transform:uppercase; font-family:arial;}
+#header ul.tabs > li{padding-right:0;}
+.sidebar_section{background:#464646; box-shadow:0 0px 0px #ddd inset;}
+.sidebar_section > h3{background:#333; color:#fff;}
+.sidebar_section {
+  background: #464646 none repeat scroll 0 0;
+  border: 3px solid #666;
+}
+.sidebar_section > h3 {
+  background: #333 !important;
+  border: 0 solid !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+  color: #fff !important;
+}
+.sidebar_section select {
+  background: #666 none repeat scroll 0 0 !important;
+  border: 0 solid rgba(0, 0, 0, 0);
+  color: #fff;
+  padding: 3px;
+  width: 240px;
+}
+.sidebar_section input{background: #666 none repeat scroll 0 0 !important;
+  border: 0 solid rgba(0, 0, 0, 0);
+  color: #fff;
+  padding: 3px;}
+table thead tr th:nth-child(2), table thead tr th:nth-child(4), table tbody tr td:nth-child(2), table tbody tr td:nth-child(4){background:#7d7d7d !important; }

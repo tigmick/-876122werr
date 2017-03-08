@@ -12,6 +12,30 @@ ActiveAdmin.register User do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+  permit_params :email, :first_name,:last_name, :password, :password_confirmation,:role
+  index do
+    selectable_column
+    column :email
+    column :first_name
+    column :last_name
+    column :role
+    actions
+  end
+
+  form do |f|
+    f.inputs "User Details" do
+      f.input :email
+      f.input :password
+      f.input :first_name
+      f.input :last_name
+      f.input :contact_no
+      f.input :password_confirmation
+      f.label :role, class: "select-role"
+      f.select(:role, options_for_select(['client', 'candidate']),style:"margin-left:225px;")
+      
+    end
+    f.button "Create User"
+  end
 
 
 end

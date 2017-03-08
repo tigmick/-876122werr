@@ -13,7 +13,13 @@ class Resume < ActiveRecord::Base
 
 
   def track_resume(job_id)
+   
     review =  Review.find_by(job_id: job_id, user_id: self.user_id)
-    review.update(is_cv_download: true,cv_download_date: Time.zone.now)
+    if review.present?
+      cv_download = review.is_cv_download
+      review.cv_ids << self.id
+      review.update(is_cv_download: true,cv_ids: review.cv_ids.uniq ,cv_download_date: Time.zone.now)
+    end
+    # UserMailer.resume_download(self.user_id, job_id).deliver_now
   end
 end

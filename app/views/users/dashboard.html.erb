@@ -1,3 +1,9 @@
+<div class="banner_cov">
+ <img src="/assets/banner_inn-b9997dedd207eec3f98e95cec00836024d36433e78983617554b1759bba3b5c1.jpg" alt="Banner inn"></div>
+<div class="container">
+ <div class="row">
+  <div class="col-md-10 sign_pop col-md-offset-1"><table class="table table-bordered">
+<% if current_user.candidate? %>
 <table class="table table-bordered">
   <thead>
     <th>Vacancies Applied For</th>
@@ -9,7 +15,7 @@
   <tbody>
   	<% @applied_jobs.each do |job| %>
     <tr>
-      <td><%= job.title %></td>
+      <td><%= link_to job.title, job_path(job) %></td>
       <td><%=reviewed_by(@reviews,job)%></td>
       <td><%=interviewed_by(job)%></td>
       <td><%=cv_download(@reviews,job)%></td>
@@ -18,3 +24,28 @@
     <%end%>
   </tbody>
 </table>
+<% end %>
+
+<% if current_user.client? %>
+<table class="table table-bordered">
+  <thead>
+    <th>Vacancies Open</th>
+    <th>Reviewed by PhD </th>
+    <th>Meeting with PhD</th>
+    <th>CV’s Submitted</th>
+    <th>Interview Status</th>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr>
+      <td><%= link_to job.title, job_path(job) %></td>
+      <td><%= reviewed_client_section(job)%></td>
+      <td></td>
+      <td><%= cv_download_client_section(job)%></td>
+      <td><%=interview_stage_client_section(job)%></td>
+    <tr>
+    <%end%>
+  </tbody>
+</table>
+<% end %>
+</div></div></div>

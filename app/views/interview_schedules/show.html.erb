@@ -1,8 +1,11 @@
+<% unless flash[:notice].nil? %>
+ <p class="error-msg"> <%= flash[:notice] %> </p>
+<% end %>
 <table class="table table-bordered">
   <thead>
     <th>Interview Stage</th>
     <th>Interview Availability Dates</th>
-    <th>Interview Dates</th>
+    <th>Interviewer Names</th>
     <th>Candidate Feedback</th>
     <th>Client Comments</th>
     <th>Next Steps</th>
@@ -13,10 +16,109 @@
         <td><%=schedule.stage%></td>
         <td><%=schedule.interview_avail_dates.values.join(', ')%></td>
         <td><%=schedule.interviewers_names.join(', ')%></td>
-        <td><%=schedule.candidate_feedback%></td>
-        <td><%=schedule.client_comment%></td>
-        <td></td>
+        <td><%= candidate_feedback_helper(schedule)%></td>
+        <td><%= client_comment_helper(schedule)%></td>
+        <td><%= next_step_helper(schedule)%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<div id="myModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<%= render partial: "interview_schedules/candidate_feedback"  if current_user.candidate? %>
+<%= render partial: "interview_schedules/client_comment" if current_user.client? %>
+</div>
+</div>
+
+<div id="myModal_n" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<%= render partial: "interview_schedules/next_step"  if current_user.client? %>
+</div>
+</div>
+
+<script type="text/javascript">
+var modal = document.getElementById('myModal');
+var modal_n = document.getElementById('myModal_n');
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+var span_n = document.getElementsByClassName("close")[1];
+
+function next_step(id,stage,desc)
+{
+ $("#myModal_n").show()
+  $("#sched_id").val(id)
+  $("#next_step").val(stage)
+  $("#next_step_desc").val(desc)
+}
+
+
+function show(id,result)
+{
+  $("#myModal").show()
+  // modal.style.display = "block";
+  $("#schedule_id").val(id)
+  $(".result").val(result)
+}
+span_n.onclick = function() {
+  modal_n.style.display = "none";
+}
+
+span.onclick = function() {
+    modal_n.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        modal_n.style.display = "none";
+    }
+}
+</script>
+<style type="text/css">
+#myBtn {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     border-bottom:1px solid #444; 
+     cursor: pointer;
+    color: black;
+}
+
+  /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    height: 500px;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>

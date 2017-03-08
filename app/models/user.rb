@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :resumes
   has_many :jobs
   has_one :user_job
+  has_many :reviews
 
   def client?
     role == "client"
