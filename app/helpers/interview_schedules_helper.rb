@@ -34,10 +34,12 @@ module InterviewSchedulesHelper
 		html += "Description: #{schedule.next_step_desc}<br>" if schedule.next_step_desc.present?
 		if current_user.client?
 			
-			if schedule.next_step.present? && schedule.next_step_desc.present?
-       html += "<button onclick='next_step(#{schedule.id},\"#{schedule.next_step}\",\"#{schedule.next_step_desc}\")' class='btn btn-primary' id='myBtn'>Edit</button>"
+			unless schedule.stage.zero?
+       html += "<button onclick='next_step(#{schedule.id},\"#{schedule.stage}\",\"#{schedule.interviewers_names.join('","')}\",\"#{schedule.client_comment}\")' class='btn btn-primary' id='myBtn'>Edit</button>   "
+       html += "<button onclick='next_step(\"\",\"\",\"\",\"\")' class='btn btn-primary' id='myBtn'>Add</button>  "
+       html += link_to "delete", "/interview_schedules/#{schedule.id}", method: :delete 
       else
-       html += "<button onclick='next_step(#{schedule.id},\"\",\"\")' class='btn btn-primary' id='myBtn'>Add</button>"
+       html += "<button onclick='next_step(\"\",\"\",\"\",\"\")' class='btn btn-primary' id='myBtn'>Add</button>"
       end
 		end
 		html.html_safe

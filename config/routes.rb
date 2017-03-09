@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :interviews, only: [:new,:create]
   end
-  resources :interview_schedules, only: [:create, :show] do
+  resources :interview_schedules, only: [:create, :show, :destroy] do
     collection do
       post "candidate_feedback"
       post "client_comment"
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   post 'welcome/search'
   match 'welcome/search', :to => "welcome#search", :as => :search, :via => [:get,:post]
-
+  match 'welcome/search_candidate', :to => "welcome#search_candidate", :as => :search_candidate, :via => [:get,:post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

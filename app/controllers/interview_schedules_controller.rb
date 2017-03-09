@@ -7,24 +7,30 @@ class InterviewSchedulesController < ApplicationController
 			@date_hash["interview_avail_date#{val}"] = params["interview_avail_date#{val}"] 
 		end
 		interview = Interview.find(params[:interview_id])
+    unless params[:sched_id].present?
 		schedule = interview.interview_schedules.new(
 			stage: params[:stage],
 			interview_avail_dates: @date_hash,
 			 interviewers_names: params[:interviewer_names].split(","), 
-			 candidate_feedback: params[:candidate_feedback], 
 			 client_comment: params[:client_comment],
 			 user_id:  params[:user_id]
 			)
 		 schedule.save
+		else
+			schedule = InterviewSchedule.find params[:sched_id]
+			schedule.update(interviewers_names: params[:interviewer_names].split(","),client_comment: params[:client_comment])
+		end
      flash[:notice] = schedule.errors.messages  unless schedule.present?
-		 redirect_to "/users/#{params[:user_id]}/user_profile?job_id=#{interview.job.id}&review=true"
+		 redirect_to"/interview_schedules/#{interview.job.id}?user_id=#{params[:user_id]}"
+		 # redirect_to "/interview_schedules/#{params[:user_id]}/user_profile?job_id=#{interview.job.id}&review=true"
 	end
 
 	def show
 		@job = Job.find(params[:id])
+		@user = User.find(params[:user_id]) if current_user.client?
 		@schedules = @job.interview.interview_schedules.where(user_id: current_user.id) if current_user.candidate?
 		@schedules = @job.interview.interview_schedules.where(user_id: params[:user_id]) if current_user.client?
-
+    
 	end
 
 	def candidate_feedback
@@ -44,5 +50,11 @@ class InterviewSchedulesController < ApplicationController
     schedule.update(next_step: params[:next_step], next_step_desc: params[:next_step_desc])
     flash[:notice] = schedule.errors.messages 
     redirect_to "/interview_schedules/#{schedule.interview.job.id}?user_id=#{schedule.user_id}"
+	end
+
+	def destroy
+		schedule = InterviewSchedule.find(params[:id])
+		schedule.destroy
+		redirect_to"/interview_schedules/#{schedule.interview.job.id}?user_id=#{schedule.user_id}"
 	end
 end

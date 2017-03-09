@@ -1,6 +1,13 @@
-<% unless flash[:notice].nil? %>
+ <div class="banner_cov">
+ <%= image_tag("banner_inn.jpg") %></div>  
+ <div class="container">
+ <div class="row">
+  <div class="col-md-10 sign_pop col-md-offset-1">
+ <% unless flash[:notice].nil? %>
  <p class="error-msg"> <%= flash[:notice] %> </p>
 <% end %>
+
+
 <table class="table table-bordered">
   <thead>
     <th>Interview Stage</th>
@@ -11,9 +18,12 @@
     <th>Next Steps</th>
   </thead>
   <tbody>
+  <% if current_user.client? && @schedules.empty? %>
+    <button id="myBtn1" onclick="next_step('',0,'')" class="btn btn-primary">Interview Schedule</button>
+  <% end %>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%=schedule.stage%></td>
+        <td><%=schedule.stage.zero? ? "Pre Screen" : schedule.stage %></td>
         <td><%=schedule.interview_avail_dates.values.join(', ')%></td>
         <td><%=schedule.interviewers_names.join(', ')%></td>
         <td><%= candidate_feedback_helper(schedule)%></td>
@@ -34,23 +44,28 @@
 <div id="myModal_n" class="modal">
 <div class="modal-content">
 <span class="close">&times;</span>
-<%= render partial: "interview_schedules/next_step"  if current_user.client? %>
+<%= render partial: "interview_schedules/form"  if current_user.client? %>
 </div>
 </div>
+</div>
+</div></div>
 
 <script type="text/javascript">
 var modal = document.getElementById('myModal');
 var modal_n = document.getElementById('myModal_n');
 var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
-var span_n = document.getElementsByClassName("close")[1];
 
-function next_step(id,stage,desc)
+
+
+function next_step(id,stage,interviewers_names,client_comment)
 {
  $("#myModal_n").show()
   $("#sched_id").val(id)
-  $("#next_step").val(stage)
-  $("#next_step_desc").val(desc)
+  $("#stage").val(stage)
+  $("#interviewer_names").val(interviewers_names)
+  $("#client_comment").val(client_comment)
+
 }
 
 
@@ -61,11 +76,15 @@ function show(id,result)
   $("#schedule_id").val(id)
   $(".result").val(result)
 }
-span_n.onclick = function() {
-  modal_n.style.display = "none";
-}
-
+$(document).ready(function(){
+  $('.close').click(function(){
+     modal.style.display = "none";
+    modal_n.style.display = "none";
+  })
+})
+   
 span.onclick = function() {
+    modal.style.display = "none";
     modal_n.style.display = "none";
 }
 window.onclick = function(event) {

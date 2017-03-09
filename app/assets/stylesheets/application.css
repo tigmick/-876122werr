@@ -16,18 +16,19 @@
  *= require datetimepicker
  */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
-nav{
-  max-width: 100% !important;
-  right: 0 !important;
-  margin:0;
-}
+nav{max-width: 100% !important; right:0 !important; margin:0;}
+
+.table.table-bordered td a{color:#4286f5;}
+.sign_pop a{color:#428bca !important; }
+.sign_pop > a.btn, h5 a.btn{color:#fff !important;}
 a:hover{background:rgba(0,0,0,0); color:#4286f5;}
 .sign_pop h3{font-size:15px;}
 .banner{margin-top:-60px; position:relative;}
 .banner_cov{margin-top:-60px;}
-body{position:absolute;min-width: 100%;min-height: 100%; padding-bottom:100px;}
+body{position:absolute;min-width: 100%;min-height: 100%;  padding-bottom:50px;}
 footer{clear:both;margin-top:10px;position:absolute;bottom:0; left:0; width:100%;}
-.sign_pop > a:hover{background:rgba(0,0,0,0); color:#333;}
+.sign_pop > a:hover{background:#4286f5; color:#333;}
+.sign_pop > a.btn:hover{color:#fff;}
 .sign_pop input[type="text"], .sign_pop input[type="email"], .sign_pop textarea, .sign_pop select{width: 100%;  min-height:26px;}
 .sign_pop input[type="submit"]{background:#00780f; color:#fff; padding:5px 12px; border:0px solid #00780f}
 .dropdown-menu .divider{margin:0px;}
@@ -38,7 +39,7 @@ footer{clear:both; margin-top:10px;}
 .navbar-default{margin:0;}
 .navbar-default{background-color:#000; border-radius:0; border:0px solid rgba(0,0,0,0);}
 .navbar-default .navbar-nav > li > a{padding:7px 10px;}
-.sign_pop {    background: #fff;    border: 1px solid #ddd;    margin-top: 30px;    border-radius: 10px;    padding: 20px 50px;    margin-bottom: 30px;}
+.sign_pop {  margin-left:0 !important; width:100% !important;   background: #fff;    border: 1px solid #ddd;    margin-top: 30px;    border-radius: 10px;    padding: 20px;    margin-bottom: 30px;}
 .sign_pop h2{font-size:18px; text-align:center; margin-top:20px;}
 .field label{font-weight:400;}
 .banner_cov{position:relative;margin-bottom:-220px;}
@@ -63,12 +64,20 @@ nav .form-group{float:right; margin-left:15px;  position:relative;}
 .content h1{font-family: open sans;  font-size: 45px;  font-weight: 300;}
 .content p{font-family:open sans;  font-size: 15px; font-weight: 300;}
 .modal-content{max-width:600px;}
-#myModal input.form-control{clear:both;  float: left;  max-width: 80%;}
+#myModal input.form-control{clear:both;  float: left;  max-width: 100%;}
 .sign_pop input[type="submit"] {
   float: left;
   margin: 0 0 0 6px;
   padding: 8px 23px;
 }
+#notice:empty {
+  display: none;
+}
+.modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+}
+.modal-content{overflow-y:auto;}
 .col-md-6.sign_pop.col-md-offset-3 .banner_cov {
   display: none;
 }
@@ -88,18 +97,45 @@ div.actions input {
 .col-md-6.sign_pop.col-md-offset-3 .container{margin:0; width:100%; max-width:100%;}
 .col-md-6.sign_pop.col-md-offset-3 .col-md-10.sign_pop.col-md-offset-1{ margin:0; border:0px solid rgba(0,0,0,0); padding:0; max-width:100%;}
 .sign_pop .close{opacity:1;}
-.jobs_tb.table-bordered tr td:nth-child(4) a:before{content:" "; font-family:fontawesome;}
-.jobs_tb.table-bordered tr td:nth-child(5) a:before{content:" "; font-family:fontawesome;}
-.jobs_tb.table-bordered tr td:nth-child(6) a:before{content:" "; font-family:fontawesome; color:#f00; }
+.jobs_tb.table-bordered tr td:nth-child(4) a:before{font-size:14px; content:" "; font-family:fontawesome;}
+.jobs_tb.table-bordered tr td:nth-child(5) a:before{font-size:14px; content:" "; font-family:fontawesome;}
+.jobs_tb.table-bordered tr td:nth-child(6) a:before{font-size:14px; content:" "; font-family:fontawesome; color:#f00; }
 .jobs_tb.table-bordered tr td a:hover{background:rgba(0,0,0,0);}
 .jobs_tb.table-bordered tr td:nth-child(6) a{color:#f00;}
 .sign_pop .banner_cov { display: none;}
 .sign_pop .container{margin:0; max-width:100%;  padding:0}
 .sign_pop .container .row{margin:0; padding:0}
 .sign_pop .container .row .sign_pop{padding:0; margin:0; border:0px solid rgba(0,0,0,0)}
-
+#notice{background: rgba(140, 255, 154, 0.6); color: green;  padding: 9px;}
 .header-form .form-control {
   border-radius: 0;
   height: 30px;
   padding: 4px 11px;
 }
+table.job_viw {
+  min-width: 100%;
+}
+table.job_viw tr td:first-child {
+  width: 20%;
+}
+table.job_viw tr td{padding:8px 12px;}
+.modal-content .form-group{display:inline-block; width:100%;}
+#myModal input.form-control{max-width:80%;}
+.job_bx{background:#e7f7fb; border:1px solid #005689; padding:10px;}
+.job_bx .ma_hed{margin-top:50px;}
+.a_bold a{font-family: open sans;
+font-size: 15px;
+font-weight: 600;}
+.job_bx h1, .job_bx .ma_hed h3{color:#4286f5;  font-family: cursive, arial;  font-size: 21px;  margin: 0 0 10px;  padding: 0;}
+.job_bx p{margin-bottom:18px;}
+.job_bx {
+  background: #e7f7fb none repeat scroll 0 0;
+  border: 1px solid #c9c9dd;
+  margin: 0 0 20px;
+  padding: 10px;
+}
+.job_bx a.btn{color:#fff !important;}
+.sign_pop .job_bx:last-child{margin:0;}
+.left_dis{float:left; width:calc(100% - 120px);}
+.apply_dis{float:right;}
+.sign_pop.log_scr{width:50% !important;  margin-left:25% !important}

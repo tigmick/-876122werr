@@ -1,5 +1,7 @@
+ 
  <%= form_tag interview_schedules_path do %>
 	<%= hidden_field_tag :interview_id, @job.interview.id if @job.interview.present? %>
+  <%= hidden_field_tag :sched_id, ''%>
 	<%= hidden_field_tag :user_id, @user.id%>
 	<%= hidden_field_tag :date_count, ""%>
 	<div class="form-group">
@@ -16,13 +18,6 @@
     </div>
   </div>
   <div id="dates"></div>
-  
-  <div class="form-group">
-	  <%= label_tag :candidate_feedback, nil, class: "col-md-3 control-label" %>
-    <div class="col-md-9">
-    	<%= text_field_tag :candidate_feedback,nil, class: "form-control"%>
-    </div>
-  </div>
 
   <div class="form-group">
 	  <%= label_tag :client_comment, nil, class: "col-md-3 control-label" %>

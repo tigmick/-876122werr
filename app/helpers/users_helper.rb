@@ -25,7 +25,7 @@ module UsersHelper
 			html = ""
 			stages = job.interview.interview_schedules.where(user_id: current_user).map(&:stage).flatten
 	  	stages.each do |stage|
-        html += "<b>"+stage.ordinalize+"</b> round<br>"
+        html += "<b>"+stage.try(:ordinalize)+"</b> round<br>"
 	  	end
        html += link_to "view schedule","/interview_schedules/#{job.id}" unless stages.empty?
 	  	# html += link_to "show schedule",interview_schedule_path(job)
@@ -78,8 +78,10 @@ module UsersHelper
 			reviews = Review.where(job_id: job.id)
 			reviews.each do |review|
 			stage = job.interview.interview_schedules.where(user_id: review.user_id).maximum("stage")
+		  if stage.present? 
 		  html += "<b>"+stage.ordinalize+"</b> round<br>"
-		  html += link_to "view schedule","/interview_schedules/#{job.id}?user_id=#{review.user_id}" if stage.present?
+	  	end
+		  html += link_to "view schedule","/interview_schedules/#{job.id}?user_id=#{review.user_id}" 
 		  html += "<br>"
 		 end
 		end 
