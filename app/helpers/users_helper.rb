@@ -24,9 +24,9 @@ module UsersHelper
 		if job.interview.present?
 			html = ""
 			stages = job.interview.interview_schedules.where(user_id: current_user).map(&:stage).flatten
-	  	stages.each do |stage|
-        html += "<b>"+stage.try(:ordinalize)+"</b> round<br>"
-	  	end
+	  	# stages.each do |stage|
+    #     html += "<b>"+stage.try(:ordinalize)+"</b> round<br>"
+	  	# end
        html += link_to "view schedule","/interview_schedules/#{job.id}" unless stages.empty?
 	  	# html += link_to "show schedule",interview_schedule_path(job)
 	  	return html.html_safe

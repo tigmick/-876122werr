@@ -1,8 +1,12 @@
-<p id="notice"><%= notice %></p>
+ <div class="banner_cov">
+ <%= image_tag("banner_inn.jpg") %></div>  
+ <div class="container">
+ <div class="row">
+  <div class="col-md-10 sign_pop col-md-offset-1">
 
-<h1>Job Listing</h1>
+<h1>Listing Jobs</h1>
 
-<table class="table table-bordered">
+<table class="table jobs_tb table-bordered">
   <thead>
     <tr>
       <th>Title</th>
@@ -18,9 +22,9 @@
         <td><%= job.title %></td>
         <td><%= job.description %></td>
         <td><%= job.try(:industry).try(:title) %></td>
-        <td><%= link_to 'Show', job  %></td>
+        <td><%= link_to 'View', job  %></td>
         <td><%= link_to 'Edit', edit_job_path(job) if current_user.client?%></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } if current_user.client? %></td>
+        <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } if current_user.client? %></td>
         
       </tr>
     <% end %>
@@ -31,4 +35,6 @@
 
 <br>
 
-<%= link_to 'New jobs', new_job_path %>
+<%= link_to 'New Job', new_job_path %>
+</div></div>
+</div>

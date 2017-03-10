@@ -25,6 +25,8 @@ class UserMailer < ApplicationMailer
     @client_email  = User.find(client_id).email
     @candidate_eamil = feedback.user.email
     @subject = "#{feedback.feedback}"
-    mail(from: @client_email,to: @candidate_eamil, subject: @subject)
+    [@candidate_eamil,"tigmicheal@yahoo.co.uk"].each do |mail_to|
+      mail(from: @client_email,to: mail_to, subject: @subject)
+    end
   end
 end

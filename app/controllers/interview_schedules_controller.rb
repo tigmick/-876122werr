@@ -7,7 +7,8 @@ class InterviewSchedulesController < ApplicationController
 			@date_hash["interview_avail_date#{val}"] = params["interview_avail_date#{val}"] 
 		end
 		interview = Interview.find(params[:interview_id])
-    unless params[:sched_id].present?
+		
+    unless params[:scheds_id].present?
 		schedule = interview.interview_schedules.new(
 			stage: params[:stage],
 			interview_avail_dates: @date_hash,
@@ -16,7 +17,7 @@ class InterviewSchedulesController < ApplicationController
 			)
 		 schedule.save
 		else
-			schedule = InterviewSchedule.find params[:sched_id]
+			schedule = InterviewSchedule.find params[:scheds_id]
 			schedule.update(interviewers_names: params[:interviewer_names].split(","))
 		end
      flash[:notice] = schedule.errors.messages  unless schedule.present?
@@ -38,7 +39,7 @@ class InterviewSchedulesController < ApplicationController
    user_id = current_user.client? ? schedule.interview.job.user.id :  schedule.user_id
    candidate_feedback = schedule.candidate_feedbacks.new(user_id: user_id,client: current_user.client? ,feedback: params[:feedback])
      candidate_feedback.save
-     # UserMailer.candidate_feedback(candidate_feedback,schedule.interview.job.user.id).deliver_now  unless current_user.client?
+    # UserMailer.candidate_feedback(candidate_feedback,schedule.interview.job.user.id).deliver_now  unless current_user.client?
 
      else
      candidate_feedback=CandidateFeedback.find(params[:feedback_id])

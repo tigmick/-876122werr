@@ -1,3 +1,7 @@
-$("#apply_<%=@job_id%>").attr("href","#")
-$("#apply_<%=@job_id%>").text("Applied")
-$("#apply_<%=@job_id%>").addClass('btn btn-danger')
+<% unless @error_msg.present? %>
+	$("#apply_<%=@job_id%>").attr("href","#")
+	$("#apply_<%=@job_id%>").text("Applied")
+	$("#apply_<%=@job_id%>").addClass('btn btn-danger')
+<%else%>
+	$("#error-msg").html("<%=@error_msg%>")
+<%end%>

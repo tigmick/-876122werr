@@ -106,7 +106,10 @@ div.actions input {
 .sign_pop .container{margin:0; max-width:100%;  padding:0}
 .sign_pop .container .row{margin:0; padding:0}
 .sign_pop .container .row .sign_pop{padding:0; margin:0; border:0px solid rgba(0,0,0,0)}
+#error-msg{ background: rgba(255, 0, 12, 0.38);
+    color: red;}
 #notice{background: rgba(140, 255, 154, 0.6); color: green;  padding: 9px;}
+
 .header-form .form-control {
   border-radius: 0;
   height: 30px;

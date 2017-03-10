@@ -66,14 +66,41 @@ var span = document.getElementsByClassName("close")[0];
 
 
 
-function next_step(id,stage,interviewers_names,client_comment)
+function next_step(id,stage,interviewers_names,inviewer_dates)
 {
  $("#myModal_n").show()
-  $("#sched_id").val(id)
+  $("#scheds_id").val(id)
   $("#stage").val(stage)
   $("#interviewer_names").val(interviewers_names)
-  $("#client_comment").val(client_comment)
+  $("#add_interview_dates").attr("data-id",$(".avail_date").length)
+  if(Object.keys(inviewer_dates).length > 1)
+  {
+    UpdateDate(inviewer_dates)
+  }
+}
 
+
+
+function DateSetup(dates,key,val)
+{
+  var html = "<div class='form-group' id='date"+val+"'><label for='reason' class='col-md-3 control-label'> <%='Date'%>"+val+"</label><div class='col-md-9'><%= escape_javascript text_field_tag 'interview_avail_date',nil ,:class=>"form-control avail_date"%></div></div>";
+  $('#dates').append(html)
+  $("#date"+val+" .avail_date").attr('name', 'interview_avail_date'+val)
+  $("#date"+val+" .avail_date").attr('id', 'interview_avail_date'+val);
+  $("#date"+val+" .avail_date").val(dates[key]);
+  $("#interview_avail_date"+val).datetimepicker();
+}
+
+
+function UpdateDate(dates)
+{
+  var count = 1
+  for (var key in dates){
+    val = count++
+    DateSetup(dates,key,val)
+  $("#add_interview_dates").attr("data-id",val)
+  }
+ 
 }
 
 function feedback(id,feedback_id,result)
@@ -97,17 +124,20 @@ function show(id,comment_id,result)
 }
 $(document).ready(function(){
   $('.close').click(function(){
+    $('.modal .avail_date').closest('.form-group').remove()
    $('.modal').hide()
   })
 })
    
 span.onclick = function() {
+  $(".modal").html("")
     modal.style.display = "none";
     modal_n.style.display = "none";
 }
 window.onclick = function(event) {
     if (event.target == modal) {
-        $('.modal').hide()
+      $(".modal").html("")
+      $('.modal').hide()
     }
 }
 </script>
