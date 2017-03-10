@@ -6,9 +6,16 @@
   <div class="job_bx">
   <div class="left_dis">
    <h1><label>Job Title :</label> <%= search.title%><br/></h1>
-  <p><label>Job Description :</label> <%= search.description %></p>
-  <a href="javascript:void(0)">View Detail</a> 
-  <div class="pull-right"><span>7 Day Left</span> <a href="#"><i class="fa fa-star-o"></i> Save</a></div>
+  <p><label>Job Description :</label> 
+  <div id="less"> 
+    <%= search.description.truncate(100)%>
+  </div>
+  <div id="more" style="display:none;">
+    <%= search.description %>
+  </div>
+  </p>
+  <a href="javascript:void(0)" id="view_details">View Detail</a> 
+
   </div>
   <div class="apply_dis">
   <%= job_apply_link(search)%>
@@ -20,3 +27,12 @@
 </div>
 </div>
 
+<script>
+$(document).ready(function(){
+  $("#view_details").click(function(){
+     $("#less").hide()
+    $("#more").show()
+  })
+})
+
+</script>

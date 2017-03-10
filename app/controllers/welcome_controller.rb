@@ -7,7 +7,8 @@ class WelcomeController < ApplicationController
     # @search = PgSearch.multisearch(params[:search])
     @search = Job.where("title LIKE ?", "%#{params[:search]}%") unless params[:category].present?
     
-    @search = Job.where("title LIKE ? AND industry_id = ?", "%#{params[:search]}%","#{params[:category]}") if params[:category].present?
+     @search = Job.where("title LIKE ? AND industry_id = ?", "%#{params[:search]}%","#{params[:category]}") if params[:category].present?
+    @search = Job.where("industry_id = ?","#{params[:category]}") unless params[:search].present?
 
   end
 

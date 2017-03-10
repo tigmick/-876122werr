@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       post "next_step"
     end
   end
+  delete '/destroy_comment/:id', :to => "interview_schedules#destroy_comment", :as => :destroy_comment
+  delete '/destroy_feedback/:id', :to => "interview_schedules#destroy_feedback", :as => :destroy_feedback
   
   devise_for :users
    resources :users , only: [] do

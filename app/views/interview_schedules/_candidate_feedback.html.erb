@@ -1,10 +1,11 @@
 <%= form_tag candidate_feedback_interview_schedules_path do %>
 	<H3>Candidate Feedback</H3>
 	<%= hidden_field_tag :schedule_id,'' %>
+	<%= hidden_field_tag :feedback_id,'' %>
 	<div class="form-group">
 	  <%= label_tag :candidate_feedback, nil, class: "col-md-3 control-label" %>
     <div class="col-md-9">
-    	<%= text_field_tag :candidate_feedback,nil, class: "result form-control"%>
+    	<%= text_field_tag :feedback,nil, class: "result form-control"%>
     </div>
   </div>
   <div class="form-group">

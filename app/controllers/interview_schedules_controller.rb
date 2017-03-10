@@ -11,14 +11,13 @@ class InterviewSchedulesController < ApplicationController
 		schedule = interview.interview_schedules.new(
 			stage: params[:stage],
 			interview_avail_dates: @date_hash,
-			 interviewers_names: params[:interviewer_names].split(","), 
-			 client_comment: params[:client_comment],
-			 user_id:  params[:user_id]
+			interviewers_names: params[:interviewer_names].split(","), 
+			user_id:  params[:user_id]
 			)
 		 schedule.save
 		else
 			schedule = InterviewSchedule.find params[:sched_id]
-			schedule.update(interviewers_names: params[:interviewer_names].split(","),client_comment: params[:client_comment])
+			schedule.update(interviewers_names: params[:interviewer_names].split(","))
 		end
      flash[:notice] = schedule.errors.messages  unless schedule.present?
 		 redirect_to"/interview_schedules/#{interview.job.id}?user_id=#{params[:user_id]}"
@@ -30,19 +29,57 @@ class InterviewSchedulesController < ApplicationController
 		@user = User.find(params[:user_id]) if current_user.client?
 		@schedules = @job.interview.interview_schedules.where(user_id: current_user.id) if current_user.candidate?
 		@schedules = @job.interview.interview_schedules.where(user_id: params[:user_id]) if current_user.client?
-    
+	  @last_stage = @schedules.maximum('stage') if current_user.client?
 	end
 
-	def candidate_feedback
-		schedule = InterviewSchedule.find(params[:schedule_id])
-    schedule.update(candidate_feedback: params[:candidate_feedback])
-	  redirect_to interview_schedule_path(schedule.interview.job)
+	def candidate_feedback  
+   schedule = InterviewSchedule.find(params[:schedule_id])
+   unless params[:feedback_id].present?
+   user_id = current_user.client? ? schedule.interview.job.user.id :  schedule.user_id
+   candidate_feedback = schedule.candidate_feedbacks.new(user_id: user_id,client: current_user.client? ,feedback: params[:feedback])
+     candidate_feedback.save
+     # UserMailer.candidate_feedback(candidate_feedback,schedule.interview.job.user.id).deliver_now  unless current_user.client?
+
+     else
+     candidate_feedback=CandidateFeedback.find(params[:feedback_id])
+     candidate_feedback.update(feedback: params[:feedback])
+     end
+   redirect_to interview_schedule_path(schedule.interview.job) if current_user.candidate?
+   redirect_to "/interview_schedules/#{schedule.interview.job.id}?user_id=#{schedule.user_id}" if current_user.client?
 	end
+
+
+	def destroy_feedback
+		candidate_feedback=CandidateFeedback.find(params[:id])
+		candidate_feedback.destroy
+		redirect_to interview_schedule_path(candidate_feedback.interview_schedule.interview.job) if current_user.candidate?
+		redirect_to "/interview_schedules/#{candidate_feedback.interview_schedule.interview.job.id}?user_id=#{candidate_feedback.interview_schedule.user_id}" if current_user.client?
+
+	end
+
+
 
 	def client_comment
-		schedule = InterviewSchedule.find(params[:schedule_id])
-    schedule.update(client_comment: params[:client_comment])
-    redirect_to "/interview_schedules/#{schedule.interview.job.id}?user_id=#{schedule.use_id}"
+		schedule = InterviewSchedule.find(params[:sched_id])
+		unless params[:comment_id].present?
+		 user_id = current_user.client? ? schedule.interview.job.user.id :  schedule.user_id
+		 client_comment = schedule.client_comments.new(user_id: user_id,client: current_user.client? ,comment: params[:comment])
+		 client_comment.save
+		 # UserMailer.client_comment(client_comment,schedule.user_id).deliver_now  if current_user.client?
+			else
+		 client_comment=ClientComment.find(params[:comment_id])
+		 client_comment.update(comment: params[:comment])
+		end
+		 redirect_to interview_schedule_path(schedule.interview.job) if current_user.candidate?
+		 redirect_to "/interview_schedules/#{schedule.interview.job.id}?user_id=#{schedule.user_id}" if current_user.client?
+	end
+
+	def destroy_comment
+		client_comment=ClientComment.find(params[:id])
+		client_comment.destroy
+		redirect_to interview_schedule_path(client_comment.interview_schedule.interview.job) if current_user.candidate?
+		redirect_to "/interview_schedules/#{client_comment.interview_schedule.interview.job.id}?user_id=#{client_comment.interview_schedule.user_id}" if current_user.client?
+
 	end
 
 	def next_step

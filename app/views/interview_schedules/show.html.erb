@@ -19,11 +19,12 @@
   </thead>
   <tbody>
   <% if current_user.client? && @schedules.empty? %>
-    <button id="myBtn1" onclick="next_step('',0,'')" class="btn btn-primary">Interview Schedule</button>
+  <tr><td colspan="6" style="text-align:center;">
+    <button id="myBtn1" onclick="next_step('',0,'')" class="btn btn-primary">Interview Schedule</button></td></tr>
   <% end %>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%=schedule.stage.zero? ? "Pre Screen" : schedule.stage %></td>
+        <td><%=schedule.stage.zero? ? "Pre Screen" : schedule.stage.ordinalize+" round" %></td>
         <td><%=schedule.interview_avail_dates.values.join(', ')%></td>
         <td><%=schedule.interviewers_names.join(', ')%></td>
         <td><%= candidate_feedback_helper(schedule)%></td>
@@ -33,13 +34,20 @@
     <% end %>
   </tbody>
 </table>
-<div id="myModal" class="modal">
+<div id="myModalFeedback" class="modal">
 <div class="modal-content">
 <span class="close">&times;</span>
-<%= render partial: "interview_schedules/candidate_feedback"  if current_user.candidate? %>
-<%= render partial: "interview_schedules/client_comment" if current_user.client? %>
+<%= render partial: "interview_schedules/candidate_feedback" %>
 </div>
 </div>
+
+<div id="myModalComment" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<%= render partial: "interview_schedules/client_comment" %>
+</div>
+</div>
+
 
 <div id="myModal_n" class="modal">
 <div class="modal-content">
@@ -68,18 +76,28 @@ function next_step(id,stage,interviewers_names,client_comment)
 
 }
 
-
-function show(id,result)
+function feedback(id,feedback_id,result)
 {
-  $("#myModal").show()
+
+  $("#myModalFeedback").show()
   // modal.style.display = "block";
   $("#schedule_id").val(id)
+  $("#feedback_id").val(feedback_id)
+  
+  $(".result").val(result)
+}
+
+function show(id,comment_id,result)
+{
+  $("#myModalComment").show()
+  // modal.style.display = "block";
+  $("#sched_id").val(id)
+  $("#comment_id").val(comment_id)
   $(".result").val(result)
 }
 $(document).ready(function(){
   $('.close').click(function(){
-     modal.style.display = "none";
-    modal_n.style.display = "none";
+   $('.modal').hide()
   })
 })
    
@@ -89,8 +107,7 @@ span.onclick = function() {
 }
 window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
-        modal_n.style.display = "none";
+        $('.modal').hide()
     }
 }
 </script>

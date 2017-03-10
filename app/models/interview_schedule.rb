@@ -6,4 +6,6 @@ class InterviewSchedule < ActiveRecord::Base
 	# has_many :interviews
  #  has_many :jobs, through: :interviews
    belongs_to :interview
+   has_many :candidate_feedbacks
+   has_many :client_comments
 end

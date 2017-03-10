@@ -1,10 +1,11 @@
 <%= form_tag client_comment_interview_schedules_path do %>
 	<H3>Client Comments</H3>
-	<%= hidden_field_tag :schedule_id,'' %>
+	<%= hidden_field_tag :sched_id,'' %>
+	<%= hidden_field_tag :comment_id,'' %>
 	<div class="form-group">
 	  <%= label_tag :client_comment, nil, class: "col-md-3 control-label" %>
     <div class="col-md-9">
-    	<%= text_field_tag :client_comment,nil, class: "result form-control"%>
+    	<%= text_field_tag :comment,nil, class: "result form-control"%>
     </div>
   </div>
   <div class="form-group">

@@ -7,7 +7,7 @@
 	<div class="form-group">
 	  <%= label_tag :stage, nil, class: "col-md-3 control-label" %>
     <div class="col-md-9">
-    	<%= text_field_tag :stage,nil, class: "form-control"%>
+    	<%= text_field_tag :stage,nil, class: "form-control" , readonly: true%>
     </div>
   </div>
 
@@ -18,13 +18,11 @@
     </div>
   </div>
   <div id="dates"></div>
-
   <div class="form-group">
-	  <%= label_tag :client_comment, nil, class: "col-md-3 control-label" %>
-    <div class="col-md-9">
-    	<%= text_field_tag :client_comment,nil, class: "form-control"%>
-    </div>
+  <div class="col-md-9">
+    <a href="javascript:void(0)" id="add_interview_dates" class="">Add Interview Dates</a>
   </div>
+</div>
     <div class="form-group">
 		  <div class="col-md-9">
 		  	<%= submit_tag "submit",class: "btn btn-primary"%>
@@ -32,7 +30,6 @@
   </div>
  <% end %>
 
-<button id="add_interview_dates" class="btn btn-primary">Add Interview Dates</button>
 
 
  <script>

@@ -13,4 +13,18 @@ class UserMailer < ApplicationMailer
   	@subject = "profile reviews"
   	mail(from: @client_email,to: @candidate_eamil, subject: @subject)
   end 
+
+  def client_comment comment ,user_id
+    @client_email  = current_user.email
+    @candidate_eamil = comment.user.email
+    @subject = "#{comment.comment}"
+    mail(from: @client_email,to: @candidate_eamil, subject: @subject)
+  end
+
+  def candidate_feedback feedback,client_id
+    @client_email  = User.find(client_id).email
+    @candidate_eamil = feedback.user.email
+    @subject = "#{feedback.feedback}"
+    mail(from: @client_email,to: @candidate_eamil, subject: @subject)
+  end
 end

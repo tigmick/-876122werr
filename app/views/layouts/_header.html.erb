@@ -36,6 +36,8 @@
           <% end %>
         <% end %>
       </ul>
+      <% if user_signed_in? %>
+      <%if current_user.candidate? %>
       <%= form_tag welcome_search_path, :method=> :post,:class=>"navbar-form navbar-left" do%>
         <div class="form-group">
         <%= text_field_tag "search" ,nil,:class=>"form-control", :placeholder=>"Search Jobs"%>
@@ -43,7 +45,8 @@
         <%= submit_tag "Submit", :class=>"btn btn-default"%>
         </div>
       <% end %>
-      <% if user_signed_in? %>
+      <% end %>
+      
         <%if current_user.client? %>
           <%= form_tag search_candidate_path, :method=> :post,:class=>"navbar-form navbar-left" do%>
             <div class="form-group">
@@ -65,9 +68,8 @@
             <ul class="dropdown-menu">
               <li><a href="#"><%= current_user.email%></a></li>
               <li role="separator" class="divider"></li>
-              <li><%= link_to "Dashboard", users_dashboard_path%>
-              <li role="separator" class="divider"></li>
-              <li><a href="#"><%= current_user.try(:contact_no)%></a></li>
+              <li><%= link_to "Go to Dashboard", users_dashboard_path%>
+             
               <li role="separator" class="divider"></li>
               <li><%= link_to "Edit",  edit_user_registration_path %></li>
               <li role="separator" class="divider"></li>
