@@ -7,7 +7,6 @@ class InterviewSchedulesController < ApplicationController
 			@date_hash["interview_avail_date#{val}"] = params["interview_avail_date#{val}"] 
 		end
 		interview = Interview.find(params[:interview_id])
-		
     unless params[:scheds_id].present?
 		schedule = interview.interview_schedules.new(
 			stage: params[:stage],
@@ -18,7 +17,7 @@ class InterviewSchedulesController < ApplicationController
 		 schedule.save
 		else
 			schedule = InterviewSchedule.find params[:scheds_id]
-			schedule.update(interviewers_names: params[:interviewer_names].split(","))
+			schedule.update(interviewers_names: params[:interviewer_names].split(","),interview_avail_dates: @date_hash)
 		end
      flash[:notice] = schedule.errors.messages  unless schedule.present?
 		 redirect_to"/interview_schedules/#{interview.job.id}?user_id=#{params[:user_id]}"

@@ -1,6 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="banner_cov">
+ <%= image_tag("banner_inn.jpg") %></div>  
+ <div class="container">
+ <div class="row">
+  <div class="col-md-10 sign_pop col-md-offset-1">
+  <p id="notice"><%= notice %></p>
 
-<h1>Resume Listing</h1>
+<h1> List of Candidate Resumes</h1>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -24,3 +29,4 @@
 <br>
 
 <%= link_to 'New Resume', new_resume_path unless current_user.client? %>
+</div></div></div>

@@ -40,7 +40,8 @@ module InterviewSchedulesHelper
 			# unless schedule.stage.zero?
        html += " <button onclick='next_step(#{schedule.id},\"#{schedule.stage}\",#{schedule.interviewers_names},#{schedule.interview_avail_dates.to_json})' class='btn btn-primary' id='myBtn'>Edit</button>"
        if schedule.stage.eql?(@last_stage)
-       html += " <button onclick='next_step(\"\",\"#{schedule.stage+1}\",\"\",\"\")' class='btn btn-primary' id='myBtn'>Add</button> "
+       	
+       html += " <button onclick='next_step(\"\",\"#{schedule.stage+1}\",\"\",\"\")' class='btn btn-primary' id='myBtn'>Add</button> "  unless schedule.stage.eql? @job.interview.total_stage
        end
        html += link_to "delete", "/interview_schedules/#{schedule.id}", method: :delete 
        # else

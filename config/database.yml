@@ -42,10 +42,15 @@ development:
   
 production:
   <<: *default
-  host: 139.59.179.138
-  user: rails
-  database: recruitment_production
-  password: 6tSeWwYQny
+  # host: 139.59.179.138
+  # user: rails
+  # database: recruitment_production
+  # password: 6tSeWwYQny
+  host: localhost
+  username: postgres
+  database: recruitment_development
+  password: root
+  host: localhost
 
 # SQLite version 3.x
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)

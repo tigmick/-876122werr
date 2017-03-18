@@ -2,7 +2,7 @@
  <img src="/assets/banner_inn-b9997dedd207eec3f98e95cec00836024d36433e78983617554b1759bba3b5c1.jpg" alt="Banner inn"></div>
 <div class="container">
  <div class="row">
-  <div class="col-md-10 sign_pop col-md-offset-1"><p id="notice"><%= notice %></p><table class="table table-bordered">
+  <div class="col-md-10 sign_pop col-md-offset-1"><table class="table table-bordered">
 <% if current_user.candidate? %>
 <table class="table table-bordered">
   <thead>
@@ -30,6 +30,7 @@
 <table class="table table-bordered">
   <thead>
     <th>Vacancies Open</th>
+    <th>No. of Candidates</th>
     <th>Reviewed by PhD </th>
     <th>Meeting with PhD</th>
     <th>CV’s Submitted</th>
@@ -38,11 +39,14 @@
   <tbody>
     <% @jobs.each do |job| %>
     <tr>
+      <% users = UserJob.all.collect{|k| k.job_ids.include?(job.id) ? User.find(k.user_id) : []}.flatten %>
       <td><%= link_to job.title, job_path(job) %></td>
-      <td><%= reviewed_client_section(job)%></td>
+      <td><%= link_to users.count, job_path(job) %></td>
+      <td><%= users.count == 0 ? "No One Applied yet" : reviewed_client_section(job)%></td>
       <td></td>
-      <td><%= cv_download_client_section(job)%></td>
-      <td><%=interview_stage_client_section(job)%></td>
+      <td><%= users.count == 0 ? "No One Applied yet" : cv_download_client_section(job)%></td>
+      <% Review.where(job_id: job.id) %>
+      <td><%=users.count == 0 ? "No One Applied yet" : interview_stage_client_section(job)%></td>
     <tr>
     <%end%>
   </tbody>

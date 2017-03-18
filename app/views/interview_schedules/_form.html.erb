@@ -35,6 +35,7 @@
  <script>
  $(document).ready(function(){
    var count = 0 ;
+
  	$("#add_interview_dates").click(function(){
  		var val = ($(".avail_date").length+1) || ++count;
  		var html = "<div class='form-group' id='date"+val+"'><label for='reason' class='col-md-3 control-label'> <%='Date'%>"+val+"</label><div class='col-md-9'><%= escape_javascript text_field_tag 'interview_avail_date',nil ,:class=>"form-control avail_date"%></div></div>";

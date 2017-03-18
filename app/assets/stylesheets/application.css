@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
@@ -106,10 +106,7 @@ div.actions input {
 .sign_pop .container{margin:0; max-width:100%;  padding:0}
 .sign_pop .container .row{margin:0; padding:0}
 .sign_pop .container .row .sign_pop{padding:0; margin:0; border:0px solid rgba(0,0,0,0)}
-#error-msg{ background: rgba(255, 0, 12, 0.38);
-    color: red;}
 #notice{background: rgba(140, 255, 154, 0.6); color: green;  padding: 9px;}
-
 .header-form .form-control {
   border-radius: 0;
   height: 30px;
@@ -142,3 +139,24 @@ font-weight: 600;}
 .left_dis{float:left; width:calc(100% - 120px);}
 .apply_dis{float:right;}
 .sign_pop.log_scr{width:50% !important;  margin-left:25% !important}
+.re_sty h1{text-transform:uppercase; margin-bottom:42px;}
+.a_bold a {margin-bottom:28px;
+    float: right;
+}.a_bold {
+    max-width: 700px;
+}.a_bold br {
+    clear: both;
+}
+#error-msg.alert-danger {
+	background-color: #e7f7fb;
+	border-color: #d1e6eb;
+	color: #ff0000;
+	z-index: 100;
+	position: relative;
+	line-height: 100%;
+clear:both
+}
+#error-msg.alert-danger:empty{display:none;}
+
+#notice{
+display: none;}

@@ -6,7 +6,7 @@ class ResumesController < ApplicationController
   # GET /resumes
   # GET /resumes.json
   def index
-    @resumes = Resume.all
+    @resumes = current_user.resumes
     if current_user.client?
       @resumes = User.find(params[:user_id]).resumes
       @job = Job.find(params[:job_id])

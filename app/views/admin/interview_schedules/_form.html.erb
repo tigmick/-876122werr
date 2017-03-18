@@ -1,0 +1,88 @@
+ <%= form_tag(resource, method: "post", multipart: true, class: 'formtastic post') do %>
+ 	<%= hidden_field_tag :date_count, ""%>
+ <div class="form-group">
+ <%= label_tag :interview_id, nil, class: "col-md-3 control-label" %>
+  <div class="col-md-9">
+    <%= select_tag "interview_id", options_from_collection_for_select(Interview.all, "id", "id")%>
+  </div>
+</div>
+	<div class="form-group">
+	  <%= label_tag :stage, nil, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+    	<%= text_field_tag :stage,nil, class: "form-control" , readonly: true%>
+    </div>
+  </div>
+
+  <div class="form-group">
+	  <%= label_tag :interviewer_names, nil, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+    	<%= text_field_tag :interviewer_names,resource.interviewers_names, class: "form-control"%>
+    </div>
+  </div>
+  <div id="dates"></div>
+  <div class="form-group">
+  <div class="col-md-9">
+    <a href="javascript:void(0)" id="add_interview_dates" class="">Add Interview Dates</a>
+  </div>
+</div>
+<div class="form-group">
+ <%= label_tag :user_id, nil, class: "col-md-3 control-label" %>
+  <div class="col-md-9">
+    <%= select_tag "user_id", options_from_collection_for_select(User.all, "id", "first_name")%>
+  </div>
+</div>
+
+    <div class="form-group">
+		  <div class="col-md-9">
+		  	<%= submit_tag "submit",class: "btn btn-primary"%>
+		  </div>
+  </div>
+ <% end %>
+
+
+
+ <script>
+ $(document).ready(function(){
+   var count = 0 ;
+
+ 	$("#add_interview_dates").click(function(){
+ 		var val = ($(".avail_date").length+1) || ++count;
+ 		var html = "<div class='form-group' id='date"+val+"'><label for='reason' class='col-md-3 control-label'> <%='Date'%>"+val+"</label><div class='col-md-9'><%= escape_javascript text_field_tag 'interview_avail_date',nil ,:class=>"form-control avail_date"%></div></div>";
+	 $('#dates').append(html)
+   $("#date"+val+" .avail_date").attr('name', 'interview_avail_date'+val)
+   $("#date"+val+" .avail_date").attr('id', 'interview_avail_date'+val);
+   $("#interview_avail_date"+val).datetimepicker();
+   $("#date_count").val(val)
+ 	});
+ });
+</script>
+<%if action_name == "edit" %>
+<script type="text/javascript">
+ UpdateDate(<%= raw resource.interview_avail_dates.to_json %>)
+ function DateSetup(dates,key,val)
+{
+  var html = "<div class='form-group' id='date"+val+"'><label for='reason' class='col-md-3 control-label'> <%='Date'%>"+val+"</label><div class='col-md-9'><%= escape_javascript text_field_tag 'interview_avail_date',nil ,:class=>"form-control avail_date"%></div></div>";
+  $('#dates').append(html)
+  $("#date"+val+" .avail_date").attr('name', 'interview_avail_date'+val)
+  $("#date"+val+" .avail_date").attr('id', 'interview_avail_date'+val);
+  $("#date"+val+" .avail_date").val(dates[key]);
+  $("#interview_avail_date"+val).datetimepicker();
+  $("#date_count").val(val)
+}
+
+
+function UpdateDate(dates)
+{
+	debugger
+  var count = 1
+  for (var key in dates){
+  	
+    val = count++
+    DateSetup(dates,key,val)
+  $("#add_interview_dates").attr("data-id",val)
+  }
+ 
+}
+
+ </script>
+<%end%>

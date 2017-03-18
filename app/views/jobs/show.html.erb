@@ -20,13 +20,16 @@
 
 
 
-
-<%= link_to 'Edit', edit_job_path(@job) if current_user.client? %> |
-<%= link_to 'Back', jobs_path %>
-
 <% if current_user.client? %>
- <button id="myBtn" class="btn btn-primary">Create Interview</button>
+	<p>
+ <button id="myBtn" class="btn btn-primary">Create Interview Stage for this Job</button>
+	<span style="font-weight:bold;color:red;padding-left:10px;"> (You must Click this button  before  Schedule is Created)</span></p><br />
 <%end%>
+<br />
+<%= link_to 'Edit', edit_job_path(@job) if current_user.client? %> |
+<%= link_to 'Back', users_dashboard_path %>
+
+
 
 
 <div class="ma_hed"><%#=feedbacks(@schedules)%></div>
