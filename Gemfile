@@ -7,7 +7,8 @@ gem 'rails', '4.2.7'
 # gem 'sqlite3'
 
 gem 'pg'
-
+# gem "will_paginate", ">=3.0.pre2"
+# gem 'will_paginate-bootstrap',">= 1.0.1"
 # gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -64,3 +65,7 @@ gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 
 gem 'unicorn'
+
+group :production do
+	gem 'byebug'
+end

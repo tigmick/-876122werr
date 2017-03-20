@@ -75,7 +75,6 @@ ActiveAdmin.register InterviewSchedule do
 			(1..params[:date_count].to_i).each do |val|
 				@date_hash["interview_avail_date#{val}"] = params["interview_avail_date#{val}"] 
 			end
-			debugger
 			schedule = InterviewSchedule.find params[:id]
 			schedule.update(interviewers_names: params[:interviewer_names].split(","),interview_avail_dates: @date_hash)
 		  redirect_to admin_interview_schedule_path(schedule)
