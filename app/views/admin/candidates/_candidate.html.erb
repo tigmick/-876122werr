@@ -11,7 +11,7 @@
     <tbody>
       <% @candidates.each do |candidate|%>
       <tr>
-        <td><%= candidate.first_name %></td>
+        <td><%= link_to candidate.first_name, admin_candidate_jobs_path(candidate) %></td>
         <td><%= candidate.first_name %></td>
         <td><%= candidate.email %></td>
       </tr>

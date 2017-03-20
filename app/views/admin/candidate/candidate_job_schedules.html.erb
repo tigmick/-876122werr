@@ -1,0 +1,35 @@
+<table class="table table-bordered">
+  <thead>
+    <th>Interview Stage</th>
+    <th>Interview Availability Dates</th>
+    <th>Interviewer Names</th>
+    <th>Candidate Feedback</th>
+    <th>Client Comments</th>
+    <th>Next Steps</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+  <% if @schedules.empty? %>
+  <tr><td colspan="6" style="text-align:center;">
+    <button id="myBtn1" onclick="next_step('',0,'')" class="btn btn-primary">Create Interview Schedule for this Job</button></td></tr>
+  <% end %>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%=schedule.stage.zero? ? "Pre Screen" : schedule.stage.ordinalize+" round" %></td>
+        <td><%=schedule.interview_avail_dates.values.join(', ')%></td>
+        <td><%=schedule.interviewers_names.join(', ')%></td>
+        <td>
+         <% schedule.candidate_feedbacks.each do |feedback| %>
+           <%= feedback.feedback%>  
+         <%end%> 
+        </td>
+        <td><% schedule.client_comments.each do |comment|%>
+        	<%= comment.comment %>
+         <%end%>
+        </td>
+        <td>Next Step:<%= schedule.next_step%></td>
+        <td><%= link_to "View" ,"/admin/interview_schedules/#{schedule.id}"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

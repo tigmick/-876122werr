@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  match "/admin/candidate/:id/jobs" => 'admin/candidate#candidate_jobs', via: :get, as: "admin_candidate_jobs"
+  match "/admin/candidate/:candidate_id/job/:id/schedule" => 'admin/candidate#candidate_job_schedules', via: :get, as: "admin_candidate_job_schedules"
+ 
+  # match "/admin/update_passwords" => 'admin/update_passwords#update', via: :post
+
   get 'users/dashboard'
 
   get 'jobs/index'

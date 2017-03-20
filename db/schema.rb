@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303063836) do
+ActiveRecord::Schema.define(version: 20170318112444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,24 @@ ActiveRecord::Schema.define(version: 20170303063836) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "candidate_feedbacks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "feedback"
+    t.boolean  "client"
+    t.integer  "interview_schedule_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "client_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "client"
+    t.string   "comment"
+    t.integer  "interview_schedule_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "industries", force: :cascade do |t|
     t.string   "title"
     t.text     "descritption"
@@ -61,11 +79,11 @@ ActiveRecord::Schema.define(version: 20170303063836) do
     t.integer  "stage"
     t.string   "interview_avail_dates"
     t.string   "interviewers_names"
-    t.string   "candidate_feedback"
-    t.string   "client_comment"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.integer  "user_id"
+    t.integer  "next_step"
+    t.string   "next_step_desc"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -111,8 +129,12 @@ ActiveRecord::Schema.define(version: 20170303063836) do
     t.integer  "user_id"
     t.boolean  "is_review"
     t.integer  "review_count"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "is_cv_download",   default: false
+    t.datetime "cv_download_date"
+    t.string   "cv_ids"
+    t.text     "meeting"
   end
 
   create_table "user_jobs", force: :cascade do |t|

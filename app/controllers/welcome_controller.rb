@@ -8,10 +8,9 @@ class WelcomeController < ApplicationController
     @search = Job.where("title LIKE ?", "%#{params[:search]}%") unless params[:category].present?
     @search = Job.where("title LIKE ? AND industry_id = ?", "%#{params[:search]}%","#{params[:category]}") if params[:category].present?
     @search = Job.where("industry_id = ?","#{params[:category]}") unless params[:search].present?
-    # @search = @search.paginate(:page => params[:page], :per_page => 2).order(created_at: :desc)
-
+    @search = @search.paginate(:page => params[:page], :per_page => 6).order(created_at: :desc)
     else
-    	@search = Job.all.paginate(:page => params[:page], :per_page => 2).order(created_at: :desc)
+    	@search = Job.all.paginate(:page => params[:page], :per_page => 6).order(created_at: :desc)
     end
   end
 

@@ -89,6 +89,7 @@ function DateSetup(dates,key,val)
   $("#date"+val+" .avail_date").attr('id', 'interview_avail_date'+val);
   $("#date"+val+" .avail_date").val(dates[key]);
   $("#interview_avail_date"+val).datetimepicker();
+  $("#date_count").val(val)
 }
 
 
