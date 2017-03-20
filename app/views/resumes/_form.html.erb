@@ -1,4 +1,9 @@
-<%= form_for(@resume, :html => { :multipart => true }) do |f| %>
+<div class="banner_cov">
+ <%= image_tag("banner_inn.jpg") %></div>  
+ <div class="container">
+ <div class="row">
+  <div class="col-md-10 sign_pop col-md-offset-1">
+  <%= form_for(@resume, :html => { :multipart => true }) do |f| %>
   <% if @resume.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
@@ -20,10 +25,11 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :cv %><br>
+    <%= f.label :cv, "CV" %><br>
     <%= f.file_field :cv %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div></div></div>

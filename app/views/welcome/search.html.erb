@@ -2,28 +2,31 @@
  <%= image_tag("banner_inn.jpg") %></div>  
  <div class="container">
  <div class="row">
-  <p id="error-msg" style="background: red;color: white;"></p>
-  <div class="col-md-6 sign_pop col-md-offset-3"><% @search.each do |search| %>
-  <div class="job_bx">
-  <div class="left_dis">
-   <h1><label>Job Title :</label> <%= search.title%><br/></h1>
-  <p><label>Job Description :</label> 
-  <div id="less_<%= search.id%>"> 
-    <%= search.description.truncate(300)%>
-  </div>
-  <div id="more_<%= search.id%>" style="display:none;">
-    <%= search.description %>
-  </div>
-  </p>
-  <a href="javascript:void(0)" id="view_details" data-id="<%= search.id%>"class="view_details">View Details</a> 
+  <p id="error-msg" class="alert alert-danger"></p>
+  <div class="col-md-6 sign_pop col-md-offset-3">
+  <% @search.each do |search| %>
+    <div class="job_bx">
+    <div class="left_dis">
+     <h1><label>Job Title :</label> <%= search.title%><br/></h1>
+    <p><label>Job Description :</label> 
+    <div id="less_<%= search.id%>"> 
+      <%= search.description.truncate(300)%>
+    </div>
+    <div id="more_<%= search.id%>" style="display:none;">
+      <%= search.description %>
+    </div>
+    </p>
+    <a href="javascript:void(0)" id="view_details" data-id="<%= search.id%>"class="view_details">View Details</a> 
 
-  </div>
-  <div class="apply_dis">
-  <%= job_apply_link(search)%>
-  </div>
-  <div class="clearfix"></div>
-  </div>
-<% end %>
+    </div>
+    <div class="apply_dis">
+    <%= job_apply_link(search) if user_signed_in? %>
+    </div>
+
+    <div class="clearfix"></div>
+    </div>
+  <% end %>
+  <%#= will_paginate @search , renderer: BootstrapPagination::Rails%>
 </div>
 </div>
 </div>

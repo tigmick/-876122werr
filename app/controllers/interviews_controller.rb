@@ -10,7 +10,7 @@ class InterviewsController < ApplicationController
 		else
   		job = @job.build_interview(inteview_params).save
     end
-    flash[:errors] =  "stage should be between 1 to 10" unless job.present?
+    flash[:notice] =  "stage should be between 1 to 10" unless job.present?
   	redirect_to job_path(@job)
 	end
 

@@ -1,0 +1,15 @@
+<%= form_tag meeting_interview_schedules_path do %>
+	<H3>Meeting with</H3>
+	<%= hidden_field_tag :review_id,'' %>
+	<div class="form-group">
+	  <%= label_tag :meeting, nil, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+    	<%= text_field_tag :meeting,nil, class: "result form-control"%>
+    </div>
+  </div>
+  <div class="form-group">
+	  <div class="col-md-9">
+	  	<%= submit_tag "submit",class: "btn btn-primary"%>
+	  </div>
+  </div>
+ <% end %>

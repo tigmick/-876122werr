@@ -95,4 +95,10 @@ class InterviewSchedulesController < ApplicationController
 		schedule.destroy
 		redirect_to"/interview_schedules/#{schedule.interview.job.id}?user_id=#{schedule.user_id}"
 	end
+
+	def meeting
+		review = Review.find(params[:review_id])
+		review.update(meeting: params[:meeting])
+		redirect_to users_dashboard_path
+	end
 end

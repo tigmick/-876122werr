@@ -17,14 +17,14 @@
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description,size: "8x8" %>
+    <%= f.text_area :description,  size: "8x8" %>
   </div>
   <div class="field">
     <%= f.label :industry_id %><br>
     <%= f.select("industry_id", Industry.all.collect {|p| [ p.title, p.id ] }, {include_blank: 'None'},class: "form-control")  %>
   </div>
   <div class="actions">
-    <%= f.submit "Create New Job" %>
+    <%= f.submit %>
   </div>
 
 <% end %>

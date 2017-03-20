@@ -11,7 +11,7 @@
 			<h5><b>Email:</b> <%= @user.email %></h5>
 			<h5><b>Full Name:</b> <%= @user.first_name %></h5>
 			<h5><b>Contact No:</b> <%= @user.contact_no %></h5>
-			<h5><%=  link_to "list of resume",{:controller => "resumes", :action => "index", :user_id => @user.id, job_id: @job.id},  class: " btn btn-primary" %></h5>
+			<h5><%=  link_to "Download Candidate Resumes",{:controller => "resumes", :action => "index", :user_id => @user.id, job_id: @job.id},  class: " btn btn-primary" %></h5>
 			</div>
 		</div>
 	</div>

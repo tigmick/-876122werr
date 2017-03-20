@@ -149,3 +149,14 @@ text-shadow: 0 0 0 rgba(0, 0, 0, 0);}
   color: #fff;
   padding: 3px;}
 table thead tr th:nth-child(2), table thead tr th:nth-child(4), table tbody tr td:nth-child(2), table tbody tr td:nth-child(4){background:#7d7d7d !important; }
+body.logged_out h2 {
+    background: #4286f5;
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+#login input[type="submit"] {
+    background: #4286f5;
+	margin-left:89px;
+	border:0px solid rgba(0,0,0,0);
+}
+
+#login .boolean label{color:#444;}

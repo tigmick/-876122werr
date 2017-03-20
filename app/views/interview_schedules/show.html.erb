@@ -20,7 +20,7 @@
   <tbody>
   <% if current_user.client? && @schedules.empty? %>
   <tr><td colspan="6" style="text-align:center;">
-    <button id="myBtn1" onclick="next_step('',0,'')" class="btn btn-primary">Interview Schedule</button></td></tr>
+    <button id="myBtn1" onclick="next_step('',0,'')" class="btn btn-primary">Create Interview Schedule for this Job</button></td></tr>
   <% end %>
     <% @schedules.each do |schedule| %>
       <tr>

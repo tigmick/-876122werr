@@ -1,17 +1,17 @@
 class WelcomeController < ApplicationController
-	before_action :authenticate_user! , except: :index
 	include WelcomeHelper
   def index
   end
   def search
     # @search = PgSearch.multisearch(params[:search])
-    if params[:search].present? && params[:category].present?
+    if params[:search].present? || params[:category].present?
     @search = Job.where("title LIKE ?", "%#{params[:search]}%") unless params[:category].present?
     @search = Job.where("title LIKE ? AND industry_id = ?", "%#{params[:search]}%","#{params[:category]}") if params[:category].present?
     @search = Job.where("industry_id = ?","#{params[:category]}") unless params[:search].present?
-    @search = @search.order(created_at: :desc)
+    # @search = @search.paginate(:page => params[:page], :per_page => 2).order(created_at: :desc)
+
     else
-    	@search = Job.all.order(created_at: :desc)
+    	@search = Job.all.paginate(:page => params[:page], :per_page => 2).order(created_at: :desc)
     end
   end
 

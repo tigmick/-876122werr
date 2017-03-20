@@ -17,6 +17,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My CV <span class="caret"></span></a>
               <ul class="dropdown-menu">
+		<li><%= link_to "Candidate Resumes", resumes_path %></li>
                 <li><%= link_to "Upload CV", new_resume_path %></li>
                 <li role="separator" class="divider"></li>
               
@@ -39,25 +40,31 @@
       </ul>
       <% if user_signed_in? %>
       <%if current_user.candidate? %>
-  
-      <%= form_tag welcome_search_path, :method=> :post,:class=>"navbar-form navbar-left" do%>
-        <div class="form-group">
-        <%= text_field_tag "search" ,nil,:class=>"form-control", :placeholder=>"Search Jobs"%>
-        <%= select_tag "category", options_from_collection_for_select(Industry.all, "id", "title"),class: 'form-control',:prompt => 'Select Job Category'%> 
-        <%= submit_tag "Submit", :class=>"btn btn-default"%>
-        </div>
+	      <%= form_tag welcome_search_path, :method=> :post,:class=>"navbar-form navbar-left" do%>
+		<div class="form-group">
+		<%= text_field_tag "search" ,nil,:class=>"form-control", :placeholder=>"Search Jobs"%>
+		<%= select_tag "category", options_from_collection_for_select(Industry.all, "id", "title"),class: 'form-control',:prompt => 'Select Job Category'%> 
+		<%= submit_tag "Search", :class=>"btn btn-default"%>
+		</div>
+	      <% end %>
       <% end %>
-      <% end %>
-      
         <%if current_user.client? %>
           <%= form_tag search_candidate_path, :method=> :post,:class=>"navbar-form navbar-left" do%>
             <div class="form-group">
             <%= text_field_tag "search_candidate" ,nil,:class=>"form-control", :placeholder=>"Search Candidates"%>
            
-            <%= submit_tag "Submit", :class=>"btn btn-default"%>
+            <%= submit_tag "Search", :class=>"btn btn-default"%>
             </div>
           <% end %>
         <%end%>
+	<% else %>
+		<%= form_tag welcome_search_path, :method=> :post,:class=>"navbar-form navbar-left" do%>
+		<div class="form-group">
+		<%= text_field_tag "search" ,nil,:class=>"form-control", :placeholder=>"Search Jobs"%>
+		<%= select_tag "category", options_from_collection_for_select(Industry.all, "id", "title"),class: 'form-control',:prompt => 'Select Job Category'%> 
+		<%= submit_tag "Search", :class=>"btn btn-default"%>
+		</div>
+	      <% end %>
       <%end%>
     
       <ul class="nav navbar-nav navbar-right">

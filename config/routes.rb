@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post "candidate_feedback"
       post "client_comment"
       post "next_step"
+      post "meeting"
     end
   end
   delete '/destroy_comment/:id', :to => "interview_schedules#destroy_comment", :as => :destroy_comment

@@ -2,7 +2,7 @@ module UsersHelper
 	def reviewed_by(reviews,job)
 		html = ""
 		review = reviews.find_by(job_id: job.id, user_id: current_user)
-		html = review.present? ? "<b>Yes</b> on <b>Date: #{review.created_at}</b>" : "<b>No</b>"
+		html = review.present? ? "<b>Yes</b> on <b>Date: #{review.created_at.strftime('%d/%m/%Y %-I:%M%p')}</b>" : "<b>No</b>"
 	  return html.html_safe
 	end
 	def interviewed_by(job)
@@ -24,11 +24,12 @@ module UsersHelper
 		if job.interview.present?
 			html = ""
 			stages = job.interview.interview_schedules.where(user_id: current_user).map(&:stage).flatten
-	  	# stages.each do |stage|
-    #     html += "<b>"+stage.try(:ordinalize)+"</b> round<br>"
-	  	# end
-       html += link_to "view schedule","/interview_schedules/#{job.id}" unless stages.empty?
-	  	# html += link_to "show schedule",interview_schedule_path(job)
+	  	stages.each do |stage|
+	  		html += "<b> pre screen </b> round<br>" if stage.zero? 
+    		html += "<b>"+stage.try(:ordinalize)+"</b> round<br>" unless stage.zero?
+	  	end
+       # html += link_to "view schedule","/interview_schedules/#{job.id}"
+	  	html += link_to "view schedule",interview_schedule_path(job)
 	  	return html.html_safe
 	  end
 	end
@@ -36,7 +37,7 @@ module UsersHelper
 	def cv_download(reviews,job)
 		html = ""
 		review = reviews.find_by(job_id: job.id, user_id: current_user,is_cv_download: true)
-		html = review.present? ? "<b>Yes</b> on <b>Date: #{review.cv_download_date}</b>" : "<b>No</b>"
+		html = review.present? ? "<b>Yes</b> on <b>Date: #{review.cv_download_date.strftime('%d/%m/%Y %-I:%M%p')}</b>" : "<b>CV awaiting download</b>"
 	  return html.html_safe
 	end
 
@@ -48,7 +49,8 @@ module UsersHelper
 		html += "<p>Total Review #{review_count}</p>"
 		reviews.each do |review|
 			html +=	"#{review.user.first_name} (#{review.user.email}) </br>"
-		end 
+		end
+
 		html.html_safe
 	end
 
@@ -56,18 +58,20 @@ module UsersHelper
 		html = ""
 		reviews = Review.where(job_id: job.id)
 		reviews.each do |review|
-	   if review.is_cv_download
+	   unless review.is_cv_download
+			html += "CV awaiting download"
+	   else
 	   	resumes = review.user.resumes.where(id: review.cv_ids)
 	   	resumes.each do |res|
-
-        html += link_to "#{res.cv_file_name}", resume_path(res)
-        # html += link_to "#{res.cv_file_name}", "/resumes/#{res.id}/download?job_id=#{job.id}"
-        html += "<br>"
+				html += link_to "#{res.cv_file_name}", resume_path(res)
+				# html += link_to "#{res.cv_file_name}", "/resumes/#{res.id}/download?job_id=#{job.id}"
+				html += "<br>"
 	   	end
-	   else
-	   	html += "No<br>"
 	   end
-		end 
+		end
+		html += "<br>"
+		html += link_to "Review/Create INTERVIEW stage",job_path(job)
+		html += "<br>"
 		html.html_safe
 	end
   
@@ -79,11 +83,30 @@ module UsersHelper
 			reviews.each do |review|
 			stage = job.interview.interview_schedules.where(user_id: review.user_id).maximum("stage")
 		  if stage.present? 
-		  html += "<b>"+stage.ordinalize+"</b> round<br>"
+		  	html += "<b> pre screen </b> round<br>" if stage.zero? 
+    		html += "<b>"+stage.try(:ordinalize)+"</b> round<br>" unless stage.zero?
 	  	end
 		  html += link_to "view schedule","/interview_schedules/#{job.id}?user_id=#{review.user_id}" 
 		  html += "<br>"
+
 		 end
+		end 
+		html.html_safe
+	end
+
+	def meeting_with(job)
+   	html = ""
+		if job.interview.present?
+			reviews = Review.where(job_id: job.id)
+			reviews.each do |review|
+				unless job.interview_schedules.where(user_id: review.user_id).empty? 
+				add = "<button onclick='meeting_with(#{review.id},\"\")' class='btn btn-primary' id='myBtn'>Add</button>"
+				edit = "<button onclick='meeting_with(#{review.id},\"#{review.meeting}\")' class='btn btn-primary' id='myBtn'>Edit</button>"
+				html +=	review.meeting.present? ? "#{review.meeting}<br>"+edit : add
+		  	else
+		  	html +=	"No"
+		  	end
+		  end
 		end 
 		html.html_safe
 	end
