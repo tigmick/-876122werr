@@ -58,6 +58,18 @@ div#active_admin_content {
     width: 100%;
     float: left;
 }
+
+.attributes_table table th
+{
+  box-shadow: none;
+  background-color: none;
+  width: 150px;
+  font-size: 0.9em;
+  padding-left: 0;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: none !important;
+}
 #title_bar #titlebar_left, #title_bar #titlebar_right{height:auto;}
 	table{width: auto;    border: 8px solid #666;    font-family: roboto;    background: #3b3b3b;    min-width: 703px;}
 	table thead > tr > th, .table.respon tbody > tr > td{

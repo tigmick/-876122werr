@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-
+  index :title => 'LIST OF USERS' 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -13,6 +13,9 @@ ActiveAdmin.register User do
 #   permitted
 # end
   permit_params :email, :first_name,:last_name, :password, :password_confirmation,:role
+   breadcrumb do
+     []   
+   end 
   index do
     selectable_column
     column :email
