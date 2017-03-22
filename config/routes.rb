@@ -4,7 +4,13 @@ Rails.application.routes.draw do
 
   match "/admin/candidate/:id/jobs" => 'admin/candidate#candidate_jobs', via: :get, as: "admin_candidate_jobs"
   match "/admin/candidate/:candidate_id/job/:id/schedule" => 'admin/candidate#candidate_job_schedules', via: :get, as: "admin_candidate_job_schedules"
- 
+  
+
+  match "/admin/client/:id/jobs" => 'admin/client#client_jobs', via: :get, as: "admin_client_jobs"
+  match "/admin/client/:client_id/job/:id/schedule" => 'admin/client#client_job_schedules', via: :get, as: "admin_client_job_schedules"
+  match "/admin/resumes/:id/download" => 'admin/resumes#download', via: :get, as: "admin_resume_download"
+
+
   # match "/admin/update_passwords" => 'admin/update_passwords#update', via: :post
 
   get 'users/dashboard'

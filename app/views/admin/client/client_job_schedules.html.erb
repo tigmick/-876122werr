@@ -6,7 +6,7 @@
     <th>Candidate Feedback</th>
     <th>Client Comments</th>
     <th>Next Steps</th>
-    <th colspan=2 style="text-align:center;">Actions</th>
+    <th>Actions</th>
   </thead>
   <tbody>
   <% if @schedules.empty? %>
@@ -24,12 +24,11 @@
          <%end%> 
         </td>
         <td><% schedule.client_comments.each do |comment|%>
-        	<%= comment.comment %>
+          <%= comment.comment %>
          <%end%>
         </td>
         <td>Next Step:<%= schedule.next_step%></td>
         <td><%= link_to "View" ,"/admin/interview_schedules/#{schedule.id}"%></td>
-	<td><%= link_to "Create" ,"/admin/interview_schedules/new"%></td>
       </tr>
     <% end %>
   </tbody>

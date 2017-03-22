@@ -17,11 +17,11 @@ permit_params :job_id ,:user_id ,:is_review, :review_count, :created_at, :update
 	  selectable_column
 	  column :job_id
 	  column :user_id
-	  column :is_review
+	  column "Reviewed" , :is_review
 	  column :review_count
-	  column :is_cv_download
-	  column :cv_download_date
-	  column :cv_ids
+	  column "CV Downloaded", :is_cv_download
+	  column "CV Download Date",:cv_download_date
+	  column "CV IDs", :cv_ids
 	  column :created_at
 	  column :updated_at
 	  actions

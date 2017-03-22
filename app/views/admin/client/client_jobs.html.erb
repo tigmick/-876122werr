@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+  <thead>
+    <th>Vacancies Open</th>
+    <th>No. of Candidates</th>
+    <th>Reviewed by PhD </th>
+    <th>Meeting with PhD</th>
+    <th>CV’s Submitted</th>
+    <th>Interview Status</th>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+    <tr>
+      <% users = UserJob.all.collect{|k| k.job_ids.include?(job.id) ? User.find(k.user_id) : []}.flatten %>
+      <td><%= link_to job.title, admin_job_path(job) %></td>
+      <td><%= link_to users.count, admin_job_path(job) %></td>
+      <td><%= users.count == 0 ? "No One Applied yet" : reviewed_client_section(job)%></td>
+      <td><%#= meeting_with(job)%></td>
+      <td><%= users.count == 0 ? "No One Applied yet" : cv_download_admin_section(job)%></td>
+      <% Review.where(job_id: job.id) %>
+      <td><%=users.count == 0 ? "No One Applied yet" : interview_stage_client_section(job)%></td>
+    <tr>
+    <%end%>
+  </tbody>
+</table>

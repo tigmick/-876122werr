@@ -4,7 +4,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Industry</th>
-      <th colspan="2">View Schedule</th>
+      <th colspan="2">Create/View Schedule</th>
     </tr>
   </thead>
 
@@ -12,9 +12,9 @@
     <% @jobs.each do |job| %>
       <tr>
         <td><%= link_to job.title,"/admin/jobs/#{job.id}" %></td>
-        <td><%= job.description %></td>
+        <td><%= job.description.truncate(200) %></td>
         <td><%= job.try(:industry).try(:title) %></td>
-        <td><%= link_to "click", admin_candidate_job_schedules_path(@candidate,job) %></td>
+        <td><%= link_to "Click", admin_candidate_job_schedules_path(@candidate,job) %></td>
         
       </tr>
     <% end %>

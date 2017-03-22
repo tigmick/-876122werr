@@ -17,7 +17,10 @@ ActiveAdmin.register Job do
   index do
     selectable_column
     column :title
-    column :description
+    #column :description
+    column "description" do |job|
+          truncate(job.description, omision: "...", length: 100)
+        end
     column :industry_id
     actions
   end
