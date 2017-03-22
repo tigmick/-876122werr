@@ -15,7 +15,7 @@
 	<div class="form-group">
 	  <%= label_tag :stage, nil, class: "col-md-3 control-label" %>
     <div class="col-md-9">
-    	<%= text_field_tag :stage,nil, class: "form-control" , readonly: true%>
+    	<%= text_field_tag :stage,resource.stage || nil, class: "form-control" , readonly: true%>
     </div>
   </div>
 

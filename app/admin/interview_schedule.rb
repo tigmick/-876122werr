@@ -17,8 +17,12 @@ ActiveAdmin.register InterviewSchedule do
 	  selectable_column
 	  column :interview_id
 	  column :stage
-	  column :interview_avail_dates
-	  column :interviewers_names
+	  column :interview_avail_dates do |p|
+	  	p.interview_avail_dates.collect{|k,v| v}.join(", ")
+	  end
+	  column :interviewers_names do |p|
+	  	p.interviewers_names.join(", ")
+	  end
 	  column :candidate_feedback
 	  column :client_comment
 	  column :user_id
